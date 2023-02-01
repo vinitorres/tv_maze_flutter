@@ -1,4 +1,4 @@
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoritesLocalDataSource {

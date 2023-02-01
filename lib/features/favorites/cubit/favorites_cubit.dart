@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:tv_shows_app/core/data/datasources/local/favorites_local_data_source.dart';
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 
 part 'favorites_state.dart';
 
@@ -13,6 +13,9 @@ class FavoritesCubit extends Cubit<FavoritesState> {
 
   loadFavorites() async {
     emit(FavoritesLoading());
+
+    favoritesList.clear();
+
     List<TvShow> favorites = [];
 
     favorites = await localDataSource.getFavorites();

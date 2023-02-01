@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/core/data/domain/entities/episode.dart';
+import 'package:tv_shows_app/core/domain/entities/episode.dart';
 import 'package:tv_shows_app/shared/utils/string_utils.dart';
 
 class EpisodeDetailsDialog extends StatelessWidget {

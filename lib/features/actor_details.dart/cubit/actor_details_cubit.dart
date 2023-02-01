@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:tv_shows_app/core/data/datasources/remote/tv_shows_remote_data_source.dart';
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 
 part 'actor_details_state.dart';
 

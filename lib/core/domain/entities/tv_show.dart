@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:tv_shows_app/core/data/domain/entities/schedule.dart';
+import 'package:tv_shows_app/core/domain/entities/schedule.dart';
 
 import 'episode.dart';
 

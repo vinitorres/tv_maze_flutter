@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
-import 'package:tv_shows_app/features/tv_shows/widgets/tv_show_item.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/shared/widgets/tv_show_item.dart';
 
 class TvShowList extends StatefulWidget {
   TvShowList({super.key, required this.tvShowList, this.onLoadMore});

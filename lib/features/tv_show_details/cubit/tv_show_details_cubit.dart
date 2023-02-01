@@ -2,15 +2,19 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:tv_shows_app/core/data/datasources/local/favorites_local_data_source.dart';
 import 'package:tv_shows_app/core/data/datasources/remote/tv_shows_remote_data_source.dart';
-import 'package:tv_shows_app/core/data/domain/entities/actor.dart';
-import 'package:tv_shows_app/core/data/domain/entities/episode.dart';
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/core/domain/entities/actor.dart';
+import 'package:tv_shows_app/core/domain/entities/episode.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/features/favorites/cubit/favorites_cubit.dart';
 
 part 'tv_show_details_state.dart';
 
 class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
-  TvShowDetailsCubit(this.remoteDataSource, this.favoritesLocalDataSource)
+  TvShowDetailsCubit(
+      this.remoteDataSource, this.favoritesLocalDataSource, this.favoritesCubit)
       : super(TvShowDetailsInitial());
+
+  final FavoritesCubit favoritesCubit;
 
   final TvShowsRemoteDataSource remoteDataSource;
   final FavoritesLocalDataSource favoritesLocalDataSource;
@@ -57,5 +61,6 @@ class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
 
   addOrRemoveFromFavorites() {
     favoritesLocalDataSource.favorite(tvShow);
+    favoritesCubit.loadFavorites();
   }
 }

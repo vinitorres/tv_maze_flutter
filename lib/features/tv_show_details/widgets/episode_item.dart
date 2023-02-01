@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/core/data/domain/entities/episode.dart';
+import 'package:tv_shows_app/core/domain/entities/episode.dart';
 import 'package:tv_shows_app/features/episode_details/episode_details_dialog.dart';
 import 'package:tv_shows_app/features/tv_show_details/widgets/episode_image_placeholder.dart';
 

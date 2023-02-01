@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 import 'package:tv_shows_app/features/tv_show_details/cubit/tv_show_details_cubit.dart';
 import 'package:tv_shows_app/shared/injection/dependency_injection.dart';
 import 'package:tv_shows_app/shared/utils/string_utils.dart';
@@ -71,7 +71,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              Navigator.pop(context);
+                              Navigator.pop(context, true);
                             },
                           ),
                         ),

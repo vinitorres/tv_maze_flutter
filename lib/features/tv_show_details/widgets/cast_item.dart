@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/core/data/domain/entities/actor.dart';
+import 'package:tv_shows_app/core/domain/entities/actor.dart';
 import 'package:tv_shows_app/features/actor_details.dart/actor_details_page.dart';
 
 class CastItem extends StatelessWidget {

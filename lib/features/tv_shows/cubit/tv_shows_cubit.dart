@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_shows_app/core/data/datasources/remote/tv_shows_remote_data_source.dart';
-import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 
 part 'tv_shows_state.dart';
 

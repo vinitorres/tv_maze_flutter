@@ -5,4 +5,5 @@ class AppColors {
   static const Color textSecondaryColor = Color.fromARGB(255, 150, 145, 145);
 
   static const Color appBackgroundColor = Color(0xFF000000);
+  static const Color appSecondaryBackgroundColor = Color.fromARGB(255, 104, 104, 104);
 }

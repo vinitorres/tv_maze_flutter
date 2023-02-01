@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/features/tv_shows/tv_shows_page.dart';
 import 'package:tv_shows_app/shared/constants/app_colors.dart';
 import 'package:tv_shows_app/shared/injection/dependency_injection.dart';
-import 'package:tv_shows_app/shared/widgets/main_bottom_navigation.dart';
+import 'package:tv_shows_app/shared/navigation/navigation_router.dart';
+import 'package:tv_shows_app/shared/navigation/navigation_routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(const MyApp());
 }
@@ -23,7 +24,9 @@ class MyApp extends StatelessWidget {
             backgroundColor: AppColors.appBackgroundColor, elevation: 0),
         primarySwatch: Colors.grey,
       ),
-      home: MainNavigation(),
+      initialRoute: NavigationRoutes.initialRoute,
+      navigatorKey: NavigationRouter.navigatorKey,
+      onGenerateRoute: NavigationRouter.generateRoute,
     );
   }
 }

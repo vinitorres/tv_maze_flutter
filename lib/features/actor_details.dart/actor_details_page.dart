@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_shows_app/features/tv_shows/widgets/tv_shows_list.dart';
+import 'package:tv_shows_app/shared/widgets/tv_shows_list.dart';
 import 'package:tv_shows_app/shared/constants/app_colors.dart';
-import 'package:tv_shows_app/core/data/domain/entities/actor.dart';
+import 'package:tv_shows_app/core/domain/entities/actor.dart';
 import 'package:tv_shows_app/features/actor_details.dart/cubit/actor_details_cubit.dart';
 import 'package:tv_shows_app/shared/injection/dependency_injection.dart';
 

@@ -6,7 +6,7 @@ class TvShowEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('No Tv Shows Found'),
+      child: Text('No tv shows found'),
     );
   }
 }
