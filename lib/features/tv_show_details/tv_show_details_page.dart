@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
 import 'package:tv_shows_app/features/tv_show_details/cubit/tv_show_details_cubit.dart';
-import 'package:tv_shows_app/injection/dependency_injection.dart';
+import 'package:tv_shows_app/shared/injection/dependency_injection.dart';
+import 'package:tv_shows_app/shared/utils/string_utils.dart';
 
 import 'widgets/cast_section.dart';
 import 'widgets/episodes_section.dart';
@@ -18,13 +19,21 @@ class TvShowDetailsPage extends StatefulWidget {
 class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
   final cubit = getIt.get<TvShowDetailsCubit>();
 
+  var isFavorite = true;
+
   @override
   void initState() {
     cubit.setTvShow(widget.tvShow);
+    verifyFavorite();
     super.initState();
   }
 
-  var isFavorite = true;
+  verifyFavorite() async {
+    var favorite = await cubit.isFavorite();
+    setState(() {
+      isFavorite = favorite;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +87,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                               color: isFavorite ? Colors.yellow : Colors.white,
                             ),
                             onPressed: () {
+                              cubit.addOrRemoveFromFavorites();
                               setState(() {
                                 isFavorite = !isFavorite;
                               });
@@ -129,7 +139,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    widget.tvShow.summary.replaceAll(RegExp(r'<[^>]*>'), ""),
+                    StringUtils.removeHtmlTags(widget.tvShow.summary),
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                 ],

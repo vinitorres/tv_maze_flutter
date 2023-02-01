@@ -1,35 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:tv_shows_app/features/favorites/cubit/favorites_cubit.dart';
 import 'package:tv_shows_app/features/tv_shows/cubit/tv_shows_cubit.dart';
 import 'package:tv_shows_app/features/tv_shows/widgets/tv_shows_empty.dart';
+import 'package:tv_shows_app/features/tv_shows/widgets/tv_shows_list.dart';
 
-import 'widgets/tv_shows_list.dart';
-
-class TvShowsPage extends StatefulWidget {
-  TvShowsPage({super.key});
+class FavoritesPage extends StatefulWidget {
+  FavoritesPage({super.key});
 
   @override
-  State<TvShowsPage> createState() => _TvShowsPageState();
+  State<FavoritesPage> createState() => _FavoritesPageState();
 }
 
-class _TvShowsPageState extends State<TvShowsPage> {
-  final cubit = GetIt.instance.get<TvShowsCubit>();
+class _FavoritesPageState extends State<FavoritesPage> {
+  final cubit = GetIt.instance.get<FavoritesCubit>();
 
-  var currentPage = 0;
   var clearButtonVisibility = false;
 
   final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
-    cubit.loadTvShows(currentPage);
+    cubit.loadFavorites();
     super.initState();
-  }
-
-  void loadMoreTvShows() {
-    currentPage++;
-    cubit.loadTvShows(currentPage);
   }
 
   @override
@@ -41,7 +35,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
           onPressed: () {},
         ),
         title: const Text(
-          'Tv Shows',
+          'Favorites',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -58,11 +52,10 @@ class _TvShowsPageState extends State<TvShowsPage> {
                 });
               },
               onSubmitted: (value) {
-                currentPage = 0;
                 if (value.isEmpty) {
-                  cubit.loadTvShows(currentPage);
+                  cubit.loadFavorites();
                 } else {
-                  cubit.searchTvShows(value, currentPage);
+                  cubit.searchFavorites(value);
                 }
               },
               style: TextStyle(color: Colors.white.withAlpha(200)),
@@ -83,13 +76,12 @@ class _TvShowsPageState extends State<TvShowsPage> {
                           ),
                           onPressed: () {
                             _searchController.clear();
-                            currentPage = 0;
-                            cubit.loadTvShows(currentPage);
+                            cubit.loadFavorites();
                           },
                         ),
                       )
                     : null,
-                hintText: 'Search Tv Shows',
+                hintText: 'Search on favorites',
                 filled: true,
                 fillColor: Colors.grey.withAlpha(80),
                 hintStyle: TextStyle(color: Colors.grey),
@@ -104,32 +96,18 @@ class _TvShowsPageState extends State<TvShowsPage> {
             child: BlocConsumer(
               bloc: cubit,
               builder: ((_, state) {
-                if (state is TvShowsEmpty) {
+                if (state is FavoritesEmpty) {
                   return TvShowEmpty();
                 }
 
-                if (state is TvShowsLoaded || state is TvShowsLoadingMore) {
-                  return Column(
-                    children: [
-                      TvShowList(
-                        onLoadMore: () {
-                          loadMoreTvShows();
-                        },
-                        tvShowList: cubit.tvShowList,
-                      ),
-                      if (state is TvShowsLoadingMore)
-                        Container(
-                          height: 40,
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                    ],
+                if (state is FavoritesLoaded) {
+                  return TvShowList(
+                    tvShowList: cubit.favoritesList,
                   );
                 }
 
                 return LoadingWithText(
-                  placeholderText: 'Loading Tv Shows...',
+                  placeholderText: 'Loading favorites...',
                 );
               }),
               listener: ((_, state) {}),

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_shows_app/data/data_sources/remote/tv_shows_remote_data_source.dart';
-import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/core/data/datasources/remote/tv_shows_remote_data_source.dart';
+import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
 
 part 'tv_shows_state.dart';
 
@@ -9,26 +9,42 @@ class TvShowsCubit extends Cubit<TvShowsState> {
 
   final TvShowsRemoteDataSource remoteDataSource;
 
+  List<TvShow> tvShowList = [];
+
   loadTvShows(int page) async {
-    emit(TvShowsLoading());
+    if (page == 0) {
+      tvShowList.clear();
+      emit(TvShowsLoading());
+    } else {
+      emit(TvShowsLoadingMore());
+    }
+
     var response = await remoteDataSource.getTvShows(page);
 
     if (response.isEmpty) {
       emit(TvShowsEmpty());
     } else {
-      emit(TvShowsLoaded(tvShowList: response));
+      tvShowList.addAll(response);
+      emit(TvShowsLoaded());
     }
   }
 
   searchTvShows(String query, int page) async {
-    emit(TvShowsLoading());
+    if (page == 0) {
+      tvShowList.clear();
+      emit(TvShowsLoading());
+    } else {
+      emit(TvShowsLoadingMore());
+    }
+
     var response =
         await remoteDataSource.searchTvShows(name: query, page: page);
 
     if (response.isEmpty) {
       emit(TvShowsEmpty());
     } else {
-      emit(TvShowsLoaded(tvShowList: response));
+      tvShowList.addAll(response);
+      emit(TvShowsLoaded());
     }
   }
 }

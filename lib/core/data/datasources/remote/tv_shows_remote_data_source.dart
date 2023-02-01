@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:tv_shows_app/entities/actor.dart';
-import 'package:tv_shows_app/entities/episode.dart';
-import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/core/data/domain/entities/actor.dart';
+import 'package:tv_shows_app/core/data/domain/entities/episode.dart';
+import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
 
-import 'package:tv_shows_app/services/tv_maze_service.dart';
+import 'package:tv_shows_app/core/data/datasources/services/tv_maze_service.dart';
 
 class TvShowsRemoteDataSource {
   TvMazeService tvShowsService;

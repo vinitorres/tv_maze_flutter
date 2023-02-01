@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/entities/episode.dart';
+import 'package:tv_shows_app/core/data/domain/entities/episode.dart';
+import 'package:tv_shows_app/features/episode_details/episode_details_dialog.dart';
 import 'package:tv_shows_app/features/tv_show_details/widgets/episode_image_placeholder.dart';
 
 class EpisodeItem extends StatelessWidget {
@@ -10,7 +11,12 @@ class EpisodeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => EpisodeDetailsDialog(episode: episode),
+        );
+      },
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(

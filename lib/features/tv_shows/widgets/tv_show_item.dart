@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
 import 'package:tv_shows_app/features/tv_show_details/tv_show_details_page.dart';
-
-import 'tv_show_empty_placeholder.dart';
+import 'package:tv_shows_app/features/tv_shows/widgets/tv_show_empty_placeholder.dart';
 
 class TvShowItem extends StatelessWidget {
   const TvShowItem({super.key, required this.tvShow});

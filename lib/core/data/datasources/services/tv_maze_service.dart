@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:tv_shows_app/entities/actor.dart';
-import 'package:tv_shows_app/entities/episode.dart';
-import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/core/data/domain/entities/actor.dart';
+import 'package:tv_shows_app/core/data/domain/entities/episode.dart';
+import 'package:tv_shows_app/core/data/domain/entities/tv_show.dart';
 
 class TvMazeService {
   static const String _baseUrl = 'https://api.tvmaze.com/';

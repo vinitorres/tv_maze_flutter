@@ -6,13 +6,9 @@ class TvShowsInitial extends TvShowsState {}
 
 class TvShowsLoading extends TvShowsState {}
 
-class TvShowsLoaded extends TvShowsState {
-  List<TvShow> tvShowList;
+class TvShowsLoadingMore extends TvShowsState {}
 
-  TvShowsLoaded({
-    required this.tvShowList,
-  });
-}
+class TvShowsLoaded extends TvShowsState {}
 
 class TvShowsEmpty extends TvShowsState {}
 
