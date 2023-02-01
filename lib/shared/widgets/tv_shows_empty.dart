@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
 class TvShowEmpty extends StatelessWidget {
-  const TvShowEmpty({super.key});
+  const TvShowEmpty(this.message);
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('No tv shows found'),
+    return Expanded(
+      child: Center(
+        child: Text(
+          message,
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
     );
   }
 }

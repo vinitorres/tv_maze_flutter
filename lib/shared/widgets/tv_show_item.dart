@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
+import 'package:tv_shows_app/features/favorites/cubit/favorites_cubit.dart';
 import 'package:tv_shows_app/features/tv_show_details/tv_show_details_page.dart';
+import 'package:tv_shows_app/shared/injection/dependency_injection.dart';
+import 'package:tv_shows_app/shared/navigation/navigation_routes.dart';
 import 'package:tv_shows_app/shared/widgets/tv_show_empty_placeholder.dart';
 
 class TvShowItem extends StatefulWidget {
@@ -13,18 +16,18 @@ class TvShowItem extends StatefulWidget {
 }
 
 class _TvShowItemState extends State<TvShowItem> {
+  final cubit = getIt.get<FavoritesCubit>();
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        var navigationResult = await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    TvShowDetailsPage(tvShow: widget.tvShow)));
+        var navigationResult = await Navigator.of(context).pushNamed(
+            NavigationRoutes.tvShowDetails,
+            arguments: widget.tvShow);
 
-        if (navigationResult != null) {
-          setState(() {});
+        if (navigationResult == true) {
+          cubit.loadFavorites();
         }
       },
       child: Stack(

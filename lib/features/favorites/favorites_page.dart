@@ -91,7 +91,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           bloc: cubit,
           builder: ((_, state) {
             if (state is FavoritesEmpty) {
-              return TvShowEmpty();
+              return TvShowEmpty('No favorites found');
             }
 
             if (state is FavoritesLoaded) {

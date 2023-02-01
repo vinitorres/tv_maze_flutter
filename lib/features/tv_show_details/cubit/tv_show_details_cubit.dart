@@ -11,10 +11,10 @@ part 'tv_show_details_state.dart';
 
 class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
   TvShowDetailsCubit(
-      this.remoteDataSource, this.favoritesLocalDataSource, this.favoritesCubit)
+      this.remoteDataSource, this.favoritesLocalDataSource)
       : super(TvShowDetailsInitial());
 
-  final FavoritesCubit favoritesCubit;
+  var favoritesHasChange = false;
 
   final TvShowsRemoteDataSource remoteDataSource;
   final FavoritesLocalDataSource favoritesLocalDataSource;
@@ -61,6 +61,6 @@ class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
 
   addOrRemoveFromFavorites() {
     favoritesLocalDataSource.favorite(tvShow);
-    favoritesCubit.loadFavorites();
+    favoritesHasChange = true;
   }
 }

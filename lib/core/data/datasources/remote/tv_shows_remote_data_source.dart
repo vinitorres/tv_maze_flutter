@@ -5,6 +5,8 @@ import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 
 import 'package:tv_shows_app/shared/services/tv_maze_service.dart';
 
+//create abstract class for remote data source
+
 class TvShowsRemoteDataSource {
   TvMazeService tvShowsService;
 

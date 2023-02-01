@@ -104,7 +104,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
           bloc: cubit,
           builder: ((_, state) {
             if (state is TvShowsEmpty) {
-              return TvShowEmpty();
+              return TvShowEmpty('No tv shows found');
             }
 
             if (state is TvShowsLoaded || state is TvShowsLoadingMore) {

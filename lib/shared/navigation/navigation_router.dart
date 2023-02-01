@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/core/domain/entities/actor.dart';
 import 'package:tv_shows_app/core/domain/entities/episode.dart';
+import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
 import 'package:tv_shows_app/features/actor_details.dart/actor_details_page.dart';
 import 'package:tv_shows_app/features/episode_details/episode_details_dialog.dart';
+import 'package:tv_shows_app/features/tv_show_details/tv_show_details_page.dart';
 import 'package:tv_shows_app/shared/navigation/navigation_routes.dart';
 import 'package:tv_shows_app/features/home/home_page.dart';
 
@@ -13,8 +15,11 @@ class NavigationRouter {
     switch (settings.name) {
       case NavigationRoutes.home:
         return MaterialPageRoute(builder: (_) => HomePage());
-
-      case NavigationRoutes.episode:
+      case NavigationRoutes.tvShowDetails:
+        return MaterialPageRoute(
+            builder: (_) =>
+                TvShowDetailsPage(tvShow: (settings.arguments as TvShow)));
+      case NavigationRoutes.episodeDetails:
         return PageRouteBuilder(
             opaque: false,
             fullscreenDialog: true,
@@ -22,8 +27,7 @@ class NavigationRouter {
             barrierColor: Colors.transparent,
             pageBuilder: (_, __, ___) =>
                 EpisodeDetailsDialog(episode: settings.arguments as Episode));
-
-      case NavigationRoutes.actor:
+      case NavigationRoutes.actorDetails:
         return MaterialPageRoute(
             builder: (_) =>
                 ActorDetailsPage(actor: (settings.arguments as Actor)));
@@ -32,13 +36,9 @@ class NavigationRouter {
     }
   }
 
-  // static void navigateTo(String routeName, {Object? arguments}) {
-  //   Navigator.currentState.pushNamed(routeName, arguments: arguments);
-  // }
-
-  // static _onGoToTvShowEvent(_GoToTvShowEvent event) {
-  //   Navigator.of(event.context).pushNamed(NavigationRoutes.tvShow,
-  //       arguments: event.tvShowPageArguments);
+  // static goToTvShowDetails(BuildContext context, TvShow tvShow) {
+  //   Navigator.of(context)
+  //       .pushNamed(NavigationRoutes.tvShowDetails, arguments: tvShow);
   // }
 
   // static _onGoToEpisodeEvent(_GoToEpisodeEvent event) {

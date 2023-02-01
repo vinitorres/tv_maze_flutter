@@ -71,7 +71,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              Navigator.pop(context, true);
+                              Navigator.pop(context, cubit.favoritesHasChange);
                             },
                           ),
                         ),

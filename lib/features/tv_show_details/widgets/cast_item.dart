@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/core/domain/entities/actor.dart';
 import 'package:tv_shows_app/features/actor_details.dart/actor_details_page.dart';
+import 'package:tv_shows_app/shared/navigation/navigation_routes.dart';
 
 class CastItem extends StatelessWidget {
   const CastItem({super.key, required this.actor});
@@ -11,11 +12,8 @@ class CastItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ActorDetailsPage(actor: actor)),
-        );
+        Navigator.pushNamed(context, NavigationRoutes.actorDetails,
+            arguments: actor);
       },
       child: Container(
         child: Column(

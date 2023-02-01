@@ -7,33 +7,15 @@ class TvMazeService {
   static const String _baseUrl = 'https://api.tvmaze.com/';
   final Dio _dio = Dio(BaseOptions(baseUrl: _baseUrl));
 
-  Future<List<TvShow>> getSchedule({String country = 'US'}) async {
-    var tvShows = <TvShow>[];
-    try {
-      var result = await _dio.get('schedule?country=$country');
-      var json = result.data as List<dynamic>;
-      for (var element in json) {
-        element['show']['airstamp'] = element['airstamp'];
-        tvShows.add(TvShow.fromJson(element['show']));
-      }
-    } catch (e, s) {
-      print(e);
-      print(s);
-    }
-    return tvShows;
-  }
-
   Future<List<TvShow>> getTvShows({int page = 0}) async {
     var tvShows = <TvShow>[];
     try {
       var result = await _dio.get('shows?page=$page');
-      var json = result.data as List<dynamic>;
-      for (var element in json) {
+      for (var element in result.data) {
         tvShows.add(TvShow.fromJson(element));
       }
-    } catch (e, s) {
+    } catch (e) {
       print(e);
-      print(s);
     }
     return tvShows;
   }
@@ -42,13 +24,11 @@ class TvMazeService {
     var episodes = <Episode>[];
     try {
       var result = await _dio.get('shows/$id/episodes');
-      var json = result.data as List<dynamic>;
-      for (var element in json) {
+      for (var element in result.data) {
         episodes.add(Episode.fromJson(element));
       }
-    } catch (e, s) {
+    } catch (e) {
       print(e);
-      print(s);
     }
     return episodes;
   }
@@ -57,13 +37,11 @@ class TvMazeService {
     var tvShows = <TvShow>[];
     try {
       var result = await _dio.get('search/shows?q=$query');
-      var json = result.data as List<dynamic>;
-      for (var element in json) {
+      for (var element in result.data) {
         tvShows.add(TvShow.fromJson(element['show']));
       }
-    } catch (e, s) {
+    } catch (e) {
       print(e);
-      print(s);
     }
     return tvShows;
   }
@@ -72,13 +50,11 @@ class TvMazeService {
     var actors = <Actor>[];
     try {
       var result = await _dio.get('shows/$tvShowId/cast');
-      var json = result.data as List<dynamic>;
-      for (var element in json) {
+      for (var element in result.data) {
         actors.add(Actor.fromJson(element['person']));
       }
-    } catch (e, s) {
+    } catch (e) {
       print(e);
-      print(s);
     }
     return actors;
   }
@@ -87,15 +63,13 @@ class TvMazeService {
     var tvShows = <TvShow>[];
     try {
       var result = await _dio.get('people/$actorId/castcredits');
-      var json = result.data as List<dynamic>;
-      for (var element in json) {
+      for (var element in result.data) {
         var result = await Dio().get(element['_links']['show']['href']);
         var json2 = result.data;
         tvShows.add(TvShow.fromJson(json2));
       }
-    } catch (e, s) {
+    } catch (e) {
       print(e);
-      print(s);
     }
     return tvShows;
   }
