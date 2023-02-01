@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/features/favorites/favorites_page.dart';
-import 'package:tv_shows_app/features/settings_page/settings_page.dart';
 import 'package:tv_shows_app/features/tv_shows/tv_shows_page.dart';
 import 'package:tv_shows_app/shared/constants/app_colors.dart';
-import 'package:tv_shows_app/shared/manager/auth_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,31 +13,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> pages = [TvShowsPage(), FavoritesPage(), SettingsPage()];
-
-  final AuthManager authManager = AuthManager();
+  final List<Widget> pages = [TvShowsPage(), FavoritesPage()];
 
   @override
   void initState() {
     super.initState();
-  }
-
-  showValidationDialog() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('You must be logged in to access the app'),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Ok'))
-            ],
-          );
-        });
   }
 
   @override
@@ -55,10 +33,6 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,
