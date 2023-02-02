@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/core/domain/entities/tv_show.dart';
-import 'package:tv_shows_app/features/favorites/cubit/favorites_cubit.dart';
-import 'package:tv_shows_app/features/tv_show_details/tv_show_details_page.dart';
-import 'package:tv_shows_app/shared/injection/dependency_injection.dart';
-import 'package:tv_shows_app/shared/navigation/navigation_routes.dart';
+import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/pages/favorites/cubit/favorites_cubit.dart';
+import 'package:tv_shows_app/pages/tv_show_details/tv_show_details_page.dart';
+import 'package:tv_shows_app/injection/dependency_injection.dart';
+import 'package:tv_shows_app/navigation/navigation_routes.dart';
 import 'package:tv_shows_app/shared/widgets/tv_show_empty_placeholder.dart';
 
 class TvShowItem extends StatefulWidget {
