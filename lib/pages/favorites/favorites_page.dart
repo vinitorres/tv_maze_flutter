@@ -47,6 +47,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             controller: _searchController,
             onChanged: (value) {
               setState(() {
+                cubit.searchFavorites(value);
                 clearButtonVisibility = value.isNotEmpty;
               });
             },
@@ -99,8 +100,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
             }
 
             if (state is FavoritesLoaded) {
-              return TvShowList(
-                tvShowList: cubit.favoritesList,
+              return Expanded(
+                child: TvShowList(
+                  tvShowList: _searchController.text.isEmpty
+                      ? cubit.favoritesList
+                      : cubit.filtredList,
+                ),
               );
             }
 

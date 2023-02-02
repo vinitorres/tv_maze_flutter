@@ -10,6 +10,7 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   final FavoritesLocalDataSource localDataSource;
 
   List<TvShow> favoritesList = [];
+  List<TvShow> filtredList = [];
 
   loadFavorites() async {
     emit(FavoritesLoading());
@@ -31,19 +32,16 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   }
 
   searchFavorites(String query) async {
-    emit(FavoritesLoading());
+    filtredList.clear();
 
-    favoritesList.clear();
+    filtredList.addAll(favoritesList
+        .where((element) =>
+            element.name.toLowerCase().contains(query.toLowerCase()))
+        .toList());
 
-    var favorites = await loadFavorites();
-
-    favorites =
-        favorites.where((element) => element.name.contains(query)).toList();
-
-    if (favorites.isEmpty) {
+    if (filtredList.isEmpty) {
       emit(FavoritesEmpty());
     } else {
-      favoritesList.addAll(favorites);
       emit(FavoritesLoaded());
     }
   }
