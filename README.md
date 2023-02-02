@@ -1,16 +1,21 @@
-# tv_shows_app
+# Jobsity Challenge
 
-A new Flutter project.
+Andre Vinicius Torres Conrado interview challenge
 
-## Getting Started
+## Features Done
+- List all of the series contained in the API used by the paging scheme provided by the API.
+- Allow users to search series by name.
+- The listing and search views must show at least the name and poster image of the
+series.
+- After clicking on an episode, the application should show the episode’s information, shows all required fields.
+- After clicking on an episode, the application should show the episode’s information, shows all required fields.
 
-This project is a starting point for a Flutter application.
+### Bonus Features Done
+- Allow the user to save a series as a favorite.
+- Allow the user to delete a series from the favorites list.
+- Allow the user to browse their favorite series in alphabetical order, and click on one to
+see its details.
+- After clicking on a person, the application should show the details of that person, show all suggested fields.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Extra Features Done
+- Allow users to search tv show in favorites page.
