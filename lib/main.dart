@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/features/tv_shows/tv_shows_page.dart';
+import 'package:tv_shows_app/shared/constants/app_colors.dart';
 import 'package:tv_shows_app/injection/dependency_injection.dart';
+import 'package:tv_shows_app/navigation/navigation_router.dart';
+import 'package:tv_shows_app/navigation/navigation_routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(const MyApp());
 }
@@ -16,11 +19,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tv Shows App',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: AppBarTheme(backgroundColor: Colors.black, elevation: 0),
+        scaffoldBackgroundColor: AppColors.appBackgroundColor,
+        appBarTheme: AppBarTheme(
+            backgroundColor: AppColors.appBackgroundColor, elevation: 0),
         primarySwatch: Colors.grey,
       ),
-      home: TvShowsPage(),
+      initialRoute: NavigationRoutes.initialRoute,
+      navigatorKey: NavigationRouter.navigatorKey,
+      onGenerateRoute: NavigationRouter.generateRoute,
     );
   }
 }

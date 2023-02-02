@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:tv_shows_app/entities/schedule.dart';
 
 import 'episode.dart';
@@ -70,5 +72,21 @@ class TvShow {
   @override
   String toString() {
     return "TvShow: $name";
+  }
+
+  //create enconde and decode for list of tv shows
+
+  static List<TvShow> decode(String tvShowsJson) {
+    final tvShows = <TvShow>[];
+    final tvShowsMap = jsonDecode(tvShowsJson) as List<dynamic>;
+    for (final tvShowMap in tvShowsMap) {
+      tvShows.add(TvShow.fromJson(tvShowMap));
+    }
+    return tvShows;
+  }
+
+  static String encode(List<TvShow> tvShows) {
+    final tvShowsMap = tvShows.map((tvShow) => tvShow.toJson()).toList();
+    return jsonEncode(tvShowsMap);
   }
 }
