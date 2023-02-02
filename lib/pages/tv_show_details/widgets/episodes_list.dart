@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/episode.dart';
 import 'package:tv_shows_app/pages/tv_show_details/widgets/episode_item.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 
 class EpisodesList extends StatelessWidget {
   const EpisodesList({super.key, required this.episodes});
@@ -35,7 +36,7 @@ class EpisodesList extends StatelessWidget {
                     'Season ${e.first.season}',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: AppValues.defaultMediumFontSize,
                     ),
                   ),
                   SizedBox(height: 8),

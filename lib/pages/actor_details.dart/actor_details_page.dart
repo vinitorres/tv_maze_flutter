@@ -56,14 +56,15 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16, vertical: AppValues.defaultMediumPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     widget.actor.name,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: AppValues.defaultLargerFontSize,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimaryColor,
                     ),
@@ -72,7 +73,7 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
                   Text(
                     AppStrings.tvShows,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppValues.defaultMediumFontSize,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimaryColor,
                     ),

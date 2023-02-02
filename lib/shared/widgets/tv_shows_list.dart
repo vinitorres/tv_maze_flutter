@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 import 'package:tv_shows_app/shared/widgets/tv_show_item.dart';
 
 class TvShowList extends StatefulWidget {
@@ -32,7 +33,7 @@ class _TvShowListState extends State<TvShowList> {
   Widget build(BuildContext context) {
     return GridView.count(
       controller: widget.scrollable == null ? null : _scrollController,
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(AppValues.defaultLargerPadding),
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       childAspectRatio: 0.7,

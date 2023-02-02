@@ -5,7 +5,7 @@ import 'package:tv_shows_app/pages/actor_details.dart/cubit/actor_details_cubit.
 import 'package:tv_shows_app/pages/favorites/cubit/favorites_cubit.dart';
 import 'package:tv_shows_app/pages/tv_show_details/cubit/tv_show_details_cubit.dart';
 import 'package:tv_shows_app/pages/tv_shows/cubit/tv_shows_cubit.dart';
-import 'package:tv_shows_app/services/tv_maze_service.dart';
+import 'package:tv_shows_app/shared/services/tv_maze_service.dart';
 
 final getIt = GetIt.instance;
 

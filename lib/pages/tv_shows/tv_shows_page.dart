@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tv_shows_app/pages/tv_shows/cubit/tv_shows_cubit.dart';
 import 'package:tv_shows_app/shared/constants/app_strings.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 import 'package:tv_shows_app/shared/widgets/loading_with_text.dart';
 import 'package:tv_shows_app/shared/widgets/tv_shows_empty.dart';
 
@@ -41,12 +42,14 @@ class _TvShowsPageState extends State<TvShowsPage> {
         AppBar(
           title: const Text(
             AppStrings.tvShows,
-            style: TextStyle(color: Colors.white, fontSize: 24),
+            style: TextStyle(
+                color: Colors.white, fontSize: AppValues.defaultLargerFontSize),
           ),
         ),
         Container(
           height: 60,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.defaultLargerPadding),
           child: TextField(
             controller: _searchController,
             onChanged: (value) {

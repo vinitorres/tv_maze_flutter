@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 
 class LoadingWithText extends StatelessWidget {
   const LoadingWithText({
@@ -22,7 +23,9 @@ class LoadingWithText extends StatelessWidget {
               ),
               Text(
                 placeholderText,
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: AppValues.defaultMediumFontSize),
               ),
             ],
           ),

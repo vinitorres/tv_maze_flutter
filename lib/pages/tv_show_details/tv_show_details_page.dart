@@ -3,6 +3,7 @@ import 'package:tv_shows_app/entities/tv_show.dart';
 import 'package:tv_shows_app/pages/tv_show_details/cubit/tv_show_details_cubit.dart';
 import 'package:tv_shows_app/shared/constants/app_strings.dart';
 import 'package:tv_shows_app/injection/dependency_injection.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 import 'package:tv_shows_app/shared/utils/string_utils.dart';
 
 import 'widgets/cast_section.dart';
@@ -62,7 +63,8 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppValues.defaultMediumPadding),
                         child: CircleAvatar(
                           radius: 24,
                           backgroundColor: Colors.black.withOpacity(0.5),
@@ -78,7 +80,8 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppValues.defaultMediumPadding),
                         child: CircleAvatar(
                           radius: 24,
                           backgroundColor: Colors.black.withOpacity(0.5),
@@ -102,16 +105,18 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.all(AppValues.defaultLargerPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 8),
                   Text(
                     widget.tvShow.name,
-                    style: TextStyle(fontSize: 28, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: AppValues.defaultLargerFontSize,
+                        color: Colors.white),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: AppValues.defaultLargerPadding),
                   SingleChildScrollView(
                     child: Row(
                       children: [
@@ -119,15 +124,18 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                           Container(
                             margin: EdgeInsets.only(right: 8),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
+                                horizontal: AppValues.defaultMediumPadding,
+                                vertical: 4),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(
+                                  AppValues.defaultLargerPadding),
                             ),
                             child: Text(
                               genre,
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: AppValues.defaultFontSize,
+                                  color: Colors.white),
                             ),
                           ),
                       ],
@@ -136,36 +144,45 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                   SizedBox(height: 8),
                   Text(
                     'Summary',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: AppValues.defaultMediumFontSize,
+                        color: Colors.white),
                   ),
                   SizedBox(height: 8),
                   Text(
                     StringUtils.removeHtmlTags(widget.tvShow.summary),
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(
+                        fontSize: AppValues.defaultSmallFontSize,
+                        color: Colors.grey),
                   ),
                 ],
               ),
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppValues.defaultLargerPadding),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     AppStrings.tvShowDetailsDaysAndTime,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: AppValues.defaultFontSize,
+                        color: Colors.white),
                   ),
                   SizedBox(height: 8),
                   Text(
                     '${widget.tvShow.schedule.days.join(', ')}  ${AppStrings.at}  ${widget.tvShow.schedule.time}',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(
+                        fontSize: AppValues.defaultSmallFontSize,
+                        color: Colors.grey),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: AppValues.defaultLargerPadding),
             CastSection(
               cubit: cubit,
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/episode.dart';
 import 'package:tv_shows_app/dialogs/episode_details/episode_details_dialog.dart';
 import 'package:tv_shows_app/pages/tv_show_details/widgets/episode_image_placeholder.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 
 class EpisodeItem extends StatelessWidget {
   const EpisodeItem({Key? key, required this.episode}) : super(key: key);
@@ -42,7 +43,8 @@ class EpisodeItem extends StatelessWidget {
                 children: [
                   Spacer(),
                   Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppValues.defaultMediumPadding),
                       child: Text('${episode.number} : ${episode.name}',
                           style: TextStyle(color: Colors.white))),
                 ],

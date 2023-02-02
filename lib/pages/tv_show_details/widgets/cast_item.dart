@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/actor.dart';
-import 'package:tv_shows_app/pages/actor_details.dart/actor_details_page.dart';
 import 'package:tv_shows_app/navigation/navigation_routes.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 
 class CastItem extends StatelessWidget {
   const CastItem({super.key, required this.actor});
@@ -24,11 +24,13 @@ class CastItem extends StatelessWidget {
               backgroundImage: NetworkImage(actor.thumb ?? ''),
             ),
             SizedBox(
-              height: 8,
+              height: AppValues.defaultMediumPadding,
             ),
             Text(
               actor.name,
-              style: TextStyle(color: Colors.white, fontSize: 14),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: AppValues.defaultSmallFontSize),
             )
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/actor.dart';
 import 'package:tv_shows_app/pages/tv_show_details/widgets/cast_item.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 
 class CastList extends StatelessWidget {
   const CastList({super.key, required this.cast});
@@ -18,7 +19,8 @@ class CastList extends StatelessWidget {
           itemBuilder: (context, index) => CastItem(
             actor: cast[index],
           ),
-          separatorBuilder: (context, index) => SizedBox(width: 16),
+          separatorBuilder: (context, index) =>
+              SizedBox(width: AppValues.defaultLargerPadding),
         ),
       ),
     );

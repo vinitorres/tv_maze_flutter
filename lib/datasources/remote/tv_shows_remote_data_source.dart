@@ -3,7 +3,7 @@ import 'package:tv_shows_app/entities/actor.dart';
 import 'package:tv_shows_app/entities/episode.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
 
-import 'package:tv_shows_app/services/tv_maze_service.dart';
+import 'package:tv_shows_app/shared/services/tv_maze_service.dart';
 
 abstract class TvShowsRemoteDataSource {
   Future<List<TvShow>> getTvShows([int page = 0]);

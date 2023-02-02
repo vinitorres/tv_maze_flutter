@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_shows_app/pages/tv_show_details/cubit/tv_show_details_cubit.dart';
 import 'package:tv_shows_app/pages/tv_show_details/widgets/episodes_list.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 
 class EpisodesSection extends StatelessWidget {
   EpisodesSection({super.key, required this.cubit});
@@ -11,13 +12,14 @@ class EpisodesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(AppValues.defaultLargerPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Episodes',
-            style: TextStyle(fontSize: 24, color: Colors.white),
+            style: TextStyle(
+                fontSize: AppValues.defaultLargerFontSize, color: Colors.white),
           ),
           SizedBox(height: 8),
           BlocBuilder(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
 import 'package:tv_shows_app/pages/favorites/cubit/favorites_cubit.dart';
-import 'package:tv_shows_app/pages/tv_show_details/tv_show_details_page.dart';
 import 'package:tv_shows_app/injection/dependency_injection.dart';
 import 'package:tv_shows_app/navigation/navigation_routes.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 import 'package:tv_shows_app/shared/widgets/tv_show_empty_placeholder.dart';
 
 class TvShowItem extends StatefulWidget {
@@ -52,7 +52,9 @@ class _TvShowItemState extends State<TvShowItem> {
                     color: Colors.black.withOpacity(0.5),
                     child: Text(
                       widget.tvShow.name,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: AppValues.defaultFontSize),
                     )),
               ],
             ),

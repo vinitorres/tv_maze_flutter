@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/episode.dart';
 import 'package:tv_shows_app/shared/constants/app_strings.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 import 'package:tv_shows_app/shared/utils/string_utils.dart';
 
 class EpisodeDetailsDialog extends StatelessWidget {
@@ -41,7 +42,7 @@ class EpisodeDetailsDialog extends StatelessWidget {
                   ),
                 ),
               Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppValues.defaultLargerPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -49,7 +50,7 @@ class EpisodeDetailsDialog extends StatelessWidget {
                     Text(
                       episode.name,
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: AppValues.defaultMediumFontSize,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -57,14 +58,14 @@ class EpisodeDetailsDialog extends StatelessWidget {
                     Text(
                       '${AppStrings.season} ${episode.season.toString()} ${AppStrings.episode} ${episode.number.toString()}',
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: AppValues.defaultFontSize,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppValues.defaultLargerPadding),
                     Text(
                       AppStrings.summary,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: AppValues.defaultFontSize,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -72,7 +73,7 @@ class EpisodeDetailsDialog extends StatelessWidget {
                     Text(
                       StringUtils.removeHtmlTags(episode.summary),
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: AppValues.defaultFontSize,
                       ),
                     ),
                   ],

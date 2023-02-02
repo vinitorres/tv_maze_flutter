@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tv_shows_app/pages/favorites/cubit/favorites_cubit.dart';
 import 'package:tv_shows_app/shared/constants/app_strings.dart';
+import 'package:tv_shows_app/shared/constants/app_values.dart';
 import 'package:tv_shows_app/shared/widgets/loading_with_text.dart';
 import 'package:tv_shows_app/shared/widgets/tv_shows_empty.dart';
 import 'package:tv_shows_app/shared/widgets/tv_shows_list.dart';
@@ -34,12 +35,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
         AppBar(
           title: const Text(
             AppStrings.favorites,
-            style: TextStyle(color: Colors.white, fontSize: 24),
+            style: TextStyle(
+                color: Colors.white, fontSize: AppValues.defaultLargerFontSize),
           ),
         ),
         Container(
           height: 60,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.defaultLargerPadding),
           child: TextField(
             controller: _searchController,
             onChanged: (value) {
