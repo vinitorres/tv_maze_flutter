@@ -1,7 +1,5 @@
 # Jobsity Challenge
 
-Andre Vinicius Torres Conrado interview challenge
-
 ## Features Done
 - List all of the series contained in the API used by the paging scheme provided by the API.
 - Allow users to search series by name.
