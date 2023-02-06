@@ -23,23 +23,24 @@ class CastSection extends StatelessWidget {
                 fontSize: AppValues.defaultLargerFontSize, color: Colors.white),
           ),
           SizedBox(height: 8),
-          BlocBuilder(
+          BlocBuilder<TvShowDetailsCubit, TvShowDetailsState>(
             bloc: cubit,
             buildWhen: (_, state) {
-              if (state is TvShowDetailsLoadedCast ||
-                  state is TvShowDetailsErrorCast ||
-                  state is TvShowDetailsLoadingCast) {
+              final status = state.status;
+              if (status == TvShowDetailsStatus.loadingCast ||
+                  status == TvShowDetailsStatus.loadedCast ||
+                  status == TvShowDetailsStatus.errorCast) {
                 return true;
               } else {
                 return false;
               }
             },
             builder: (context, state) {
-              if (state is TvShowDetailsLoadedCast) {
-                return CastList(cast: state.cast);
+              if (state.status == TvShowDetailsStatus.loadedCast) {
+                return CastList(cast: state.cast ?? []);
               }
 
-              if (state is TvShowDetailsErrorCast) {
+              if (state.status == TvShowDetailsStatus.errorCast) {
                 return Center(child: Text('Error loading cast'));
               }
 

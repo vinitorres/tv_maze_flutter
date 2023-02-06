@@ -1,11 +1,29 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'favorites_cubit.dart';
 
-abstract class FavoritesState {}
+enum FavoritesStatus { initial, loading, loaded, empty }
 
-class FavoritesInitial extends FavoritesState {}
+class FavoritesState extends Equatable {
+  final FavoritesStatus status;
 
-class FavoritesLoading extends FavoritesState {}
+  List<TvShow>? favoritesList;
+  List<TvShow>? filtredList;
 
-class FavoritesLoaded extends FavoritesState {}
+  FavoritesState({required this.status, this.favoritesList, this.filtredList});
 
-class FavoritesEmpty extends FavoritesState {}
+  @override
+  List<Object?> get props =>
+      [this.status, this.favoritesList, this.filtredList];
+
+  FavoritesState copyWith({
+    FavoritesStatus? status,
+    List<TvShow>? favoritesList,
+    List<TvShow>? filtredList,
+  }) {
+    return FavoritesState(
+      status: status ?? this.status,
+      favoritesList: favoritesList ?? this.favoritesList,
+      filtredList: filtredList ?? this.filtredList,
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:tv_shows_app/datasources/local/favorites_local_data_source.dart';
 import 'package:tv_shows_app/datasources/remote/tv_shows_remote_data_source.dart';
 import 'package:tv_shows_app/entities/actor.dart';
@@ -8,9 +9,8 @@ import 'package:tv_shows_app/entities/tv_show.dart';
 part 'tv_show_details_state.dart';
 
 class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
-  TvShowDetailsCubit(
-      this.remoteDataSource, this.favoritesLocalDataSource)
-      : super(TvShowDetailsInitial());
+  TvShowDetailsCubit(this.remoteDataSource, this.favoritesLocalDataSource)
+      : super(TvShowDetailsState(status: TvShowDetailsStatus.initial));
 
   var favoritesHasChange = false;
 
@@ -30,26 +30,30 @@ class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
   }
 
   _loadCast() async {
-    emit(TvShowDetailsLoadingCast());
+    emit(state.copyWith(status: TvShowDetailsStatus.loadingCast));
 
     var response = await remoteDataSource.getActors(tvShow.id);
 
     if (response.isEmpty) {
-      emit(TvShowDetailsErrorCast());
+      emit(state.copyWith(
+        status: TvShowDetailsStatus.loadingCast,
+      ));
     } else {
-      emit(TvShowDetailsLoadedCast(cast: response));
+      emit(state.copyWith(
+          status: TvShowDetailsStatus.loadedCast, cast: response));
     }
   }
 
   _loadEpisodes() async {
-    emit(TvShowDetailsLoadingEpisodes());
+    emit(state.copyWith(status: TvShowDetailsStatus.loadingEpisodes));
 
     var response = await remoteDataSource.getEpisodes(tvShow.id);
 
     if (response.isEmpty) {
-      emit(TvShowDetailsErrorEpisodes());
+      emit(state.copyWith(status: TvShowDetailsStatus.errorEpisodes));
     } else {
-      emit(TvShowDetailsLoadedEpisodes(episodes: response));
+      emit(state.copyWith(
+          status: TvShowDetailsStatus.loadedEpisodes, episodes: response));
     }
   }
 

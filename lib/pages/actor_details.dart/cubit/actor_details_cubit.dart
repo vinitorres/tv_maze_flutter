@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:tv_shows_app/datasources/remote/tv_shows_remote_data_source.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
@@ -7,7 +8,7 @@ part 'actor_details_state.dart';
 
 class ActorDetailsCubit extends Cubit<ActorDetailsState> {
   ActorDetailsCubit(this._tvShowsRemoteDataSource)
-      : super(ActorDetailsInitial());
+      : super(ActorDetailsState(status: ActorDetailsStatus.initial));
 
   final TvShowsRemoteDataSource _tvShowsRemoteDataSource;
 
@@ -19,13 +20,15 @@ class ActorDetailsCubit extends Cubit<ActorDetailsState> {
   }
 
   loadActorSeries() async {
-    emit(ActorDetailsLoading());
+    emit(state.copyWith(status: ActorDetailsStatus.loading));
 
     try {
-      final actorSeries = await _tvShowsRemoteDataSource.getActorSeries(actorId);
-      emit(ActorDetailsLoaded(actorSeries));
+      final actorSeries =
+          await _tvShowsRemoteDataSource.getActorSeries(actorId);
+      emit(state.copyWith(
+          status: ActorDetailsStatus.loaded, actorSeries: actorSeries));
     } catch (e) {
-      emit(ActorDetailsError());
+      emit(state.copyWith(status: ActorDetailsStatus.error));
     }
   }
 }

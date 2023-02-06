@@ -1,25 +1,54 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'tv_show_details_cubit.dart';
 
-abstract class TvShowDetailsState {}
-
-class TvShowDetailsInitial extends TvShowDetailsState {}
-
-class TvShowDetailsLoadingEpisodes extends TvShowDetailsState {}
-
-class TvShowDetailsLoadedEpisodes extends TvShowDetailsState {
-  TvShowDetailsLoadedEpisodes({required this.episodes});
-
-  final List<Episode> episodes;
+enum TvShowDetailsStatus {
+  initial,
+  loadingEpisodes,
+  loadedEpisodes,
+  errorEpisodes,
+  loadingCast,
+  loadedCast,
+  errorCast
 }
 
-class TvShowDetailsErrorEpisodes extends TvShowDetailsState {}
+class TvShowDetailsState extends Equatable {
+  final TvShowDetailsStatus status;
 
-class TvShowDetailsLoadingCast extends TvShowDetailsState {}
+  List<Episode>? episodes;
+  List<Actor>? cast;
+  String? castErrorMessage;
+  String? episodesErrorMessage;
 
-class TvShowDetailsLoadedCast extends TvShowDetailsState {
-  TvShowDetailsLoadedCast({required this.cast});
+  TvShowDetailsState({
+    required this.status,
+    this.episodes,
+    this.cast,
+    this.castErrorMessage,
+    this.episodesErrorMessage,
+  });
 
-  final List<Actor> cast;
+  @override
+  List<Object?> get props => [
+        this.status,
+        this.episodes,
+        this.cast,
+        this.castErrorMessage,
+        this.episodesErrorMessage
+      ];
+
+  TvShowDetailsState copyWith({
+    TvShowDetailsStatus? status,
+    List<Episode>? episodes,
+    List<Actor>? cast,
+    String? castErrorMessage,
+    String? episodesErrorMessage,
+  }) {
+    return TvShowDetailsState(
+      status: status ?? this.status,
+      episodes: episodes ?? this.episodes,
+      cast: cast ?? this.cast,
+      castErrorMessage: castErrorMessage ?? this.castErrorMessage,
+      episodesErrorMessage: episodesErrorMessage ?? this.episodesErrorMessage,
+    );
+  }
 }
-
-class TvShowDetailsErrorCast extends TvShowDetailsState {}

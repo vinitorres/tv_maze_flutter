@@ -1,15 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'tv_shows_cubit.dart';
 
-abstract class TvShowsState {}
+enum TvShowsStatus { initial, loading, loadingMore, loaded, empty, error }
 
-class TvShowsInitial extends TvShowsState {}
+class TvShowsState extends Equatable {
+  final TvShowsStatus status;
 
-class TvShowsLoading extends TvShowsState {}
+  List<TvShow>? tvShowList;
 
-class TvShowsLoadingMore extends TvShowsState {}
+  TvShowsState({
+    required this.status,
+    this.tvShowList,
+  });
 
-class TvShowsLoaded extends TvShowsState {}
+  @override
+  List<Object?> get props => [this.status, this.tvShowList];
 
-class TvShowsEmpty extends TvShowsState {}
-
-class TvShowsError extends TvShowsState {}
+  TvShowsState copyWith({
+    TvShowsStatus? status,
+    List<TvShow>? tvShowList,
+  }) {
+    return TvShowsState(
+      status: status ?? this.status,
+      tvShowList: tvShowList ?? this.tvShowList,
+    );
+  }
+}

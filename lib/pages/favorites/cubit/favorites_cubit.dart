@@ -1,21 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:tv_shows_app/datasources/local/favorites_local_data_source.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
 
 part 'favorites_state.dart';
 
 class FavoritesCubit extends Cubit<FavoritesState> {
-  FavoritesCubit(this.localDataSource) : super(FavoritesInitial());
-
   final FavoritesLocalDataSource localDataSource;
 
-  List<TvShow> favoritesList = [];
-  List<TvShow> filtredList = [];
+  FavoritesCubit(this.localDataSource)
+      : super(FavoritesState(status: FavoritesStatus.initial));
 
   loadFavorites() async {
-    emit(FavoritesLoading());
+    emit(state.copyWith(status: FavoritesStatus.loading));
 
-    favoritesList.clear();
+    state.favoritesList?.clear();
 
     List<TvShow> favorites = [];
 
@@ -24,25 +23,26 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     favorites.sort((a, b) => a.name.compareTo(b.name));
 
     if (favorites.isEmpty) {
-      emit(FavoritesEmpty());
+      emit(state.copyWith(status: FavoritesStatus.empty));
     } else {
-      favoritesList.addAll(favorites);
-      emit(FavoritesLoaded());
+      emit(state.copyWith(
+          status: FavoritesStatus.loaded, favoritesList: favorites));
     }
   }
 
   searchFavorites(String query) async {
-    filtredList.clear();
+    state.filtredList?.clear();
 
-    filtredList.addAll(favoritesList
+    state.filtredList?.addAll(state.favoritesList!
         .where((element) =>
             element.name.toLowerCase().contains(query.toLowerCase()))
         .toList());
 
-    if (filtredList.isEmpty) {
-      emit(FavoritesEmpty());
+    if (state.filtredList!.isEmpty) {
+      emit(state.copyWith(status: FavoritesStatus.empty));
     } else {
-      emit(FavoritesLoaded());
+      emit(state.copyWith(
+          status: FavoritesStatus.loaded, filtredList: state.filtredList));
     }
   }
 }

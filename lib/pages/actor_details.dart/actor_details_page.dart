@@ -85,14 +85,14 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
             BlocBuilder<ActorDetailsCubit, ActorDetailsState>(
               bloc: cubit,
               builder: (context, state) {
-                if (state is ActorDetailsLoading) {
+                if (state.status == ActorDetailsStatus.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 }
-                if (state is ActorDetailsLoaded) {
+                if (state.status == ActorDetailsStatus.loaded) {
                   return TvShowList(
-                      tvShowList: state.actorSeries, scrollable: false);
+                      tvShowList: state.actorSeries ?? [], scrollable: false);
                 }
                 return Container();
               },

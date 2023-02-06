@@ -92,19 +92,20 @@ class _FavoritesPageState extends State<FavoritesPage> {
             ),
           ),
         ),
-        BlocBuilder(
+        BlocBuilder<FavoritesCubit, FavoritesState>(
           bloc: cubit,
           builder: ((_, state) {
-            if (state is FavoritesEmpty) {
+            if (state.status == FavoritesStatus.empty) {
               return TvShowEmpty(AppStrings.favoritesEmpty);
             }
 
-            if (state is FavoritesLoaded) {
+            if (state.status == FavoritesStatus.loaded) {
               return Expanded(
                 child: TvShowList(
-                  tvShowList: _searchController.text.isEmpty
-                      ? cubit.favoritesList
-                      : cubit.filtredList,
+                  tvShowList: (_searchController.text.isEmpty
+                          ? state.favoritesList
+                          : state.filtredList) ??
+                      [],
                 ),
               );
             }

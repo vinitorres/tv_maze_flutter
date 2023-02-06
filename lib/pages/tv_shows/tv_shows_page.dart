@@ -100,14 +100,15 @@ class _TvShowsPageState extends State<TvShowsPage> {
             ),
           ),
         ),
-        BlocConsumer(
+        BlocConsumer<TvShowsCubit, TvShowsState>(
           bloc: cubit,
           builder: ((_, state) {
-            if (state is TvShowsEmpty) {
+            if (state.status == TvShowsStatus.empty) {
               return TvShowEmpty(AppStrings.tvShowsEmpty);
             }
 
-            if (state is TvShowsLoaded || state is TvShowsLoadingMore) {
+            if (state.status == TvShowsStatus.loaded ||
+                state.status == TvShowsStatus.loadingMore) {
               return Expanded(
                 child: Column(
                   children: [
@@ -119,7 +120,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
                         tvShowList: cubit.tvShowList,
                       ),
                     ),
-                    if (state is TvShowsLoadingMore)
+                    if (state.status == TvShowsStatus.loadingMore)
                       Container(
                         height: 40,
                         child: Center(
@@ -131,7 +132,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
               );
             }
 
-            if (state is TvShowsLoading) {
+            if (state.status == TvShowsStatus.loading) {
               return LoadingWithText(
                 placeholderText: AppStrings.tvShowsLoading,
               );

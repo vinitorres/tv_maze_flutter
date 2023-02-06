@@ -22,23 +22,24 @@ class EpisodesSection extends StatelessWidget {
                 fontSize: AppValues.defaultLargerFontSize, color: Colors.white),
           ),
           SizedBox(height: 8),
-          BlocBuilder(
+          BlocBuilder<TvShowDetailsCubit, TvShowDetailsState>(
             bloc: cubit,
             buildWhen: (_, state) {
-              if (state is TvShowDetailsLoadingEpisodes ||
-                  state is TvShowDetailsLoadedEpisodes ||
-                  state is TvShowDetailsErrorEpisodes) {
+              final status = state.status;
+              if (status == TvShowDetailsStatus.loadedEpisodes ||
+                  status == TvShowDetailsStatus.loadingEpisodes ||
+                  status == TvShowDetailsStatus.errorEpisodes) {
                 return true;
               } else {
                 return false;
               }
             },
             builder: (context, state) {
-              if (state is TvShowDetailsLoadedEpisodes) {
-                return EpisodesList(episodes: state.episodes);
+              if (state.status == TvShowDetailsStatus.loadedEpisodes) {
+                return EpisodesList(episodes: state.episodes ?? []);
               }
 
-              if (state is TvShowDetailsErrorEpisodes) {
+              if (state.status == TvShowDetailsStatus.errorEpisodes) {
                 return Center(child: Text('Error loading episodes'));
               }
 
