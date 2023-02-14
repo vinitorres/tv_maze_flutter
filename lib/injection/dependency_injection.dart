@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:get_it/get_it.dart';
 import 'package:tv_shows_app/datasources/local/favorites_local_data_source.dart';
 import 'package:tv_shows_app/datasources/remote/tv_shows_remote_data_source.dart';
+import 'package:tv_shows_app/network/http_client_impl.dart';
 import 'package:tv_shows_app/pages/actor_details.dart/cubit/actor_details_cubit.dart';
 import 'package:tv_shows_app/pages/favorites/cubit/favorites_cubit.dart';
 import 'package:tv_shows_app/pages/tv_show_details/cubit/tv_show_details_cubit.dart';
@@ -24,4 +27,7 @@ configureDependencies() {
 
   //Services
   getIt.registerLazySingleton<TvMazeService>(() => TvMazeServiceImpl());
+
+  //HttpClient
+  // getIt.registerLazySingleton<HttpClient>(() => HttpClientImpl());
 }

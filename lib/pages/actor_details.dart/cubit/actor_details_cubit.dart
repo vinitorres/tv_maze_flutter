@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 import 'package:tv_shows_app/datasources/remote/tv_shows_remote_data_source.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
 
