@@ -14,10 +14,10 @@ enum TvShowDetailsStatus {
 class TvShowDetailsState extends Equatable {
   final TvShowDetailsStatus status;
 
-  List<Episode>? episodes;
-  List<Actor>? cast;
-  String? castErrorMessage;
-  String? episodesErrorMessage;
+  final List<Episode>? episodes;
+  final List<Actor>? cast;
+  final String? castErrorMessage;
+  final String? episodesErrorMessage;
 
   TvShowDetailsState({
     required this.status,

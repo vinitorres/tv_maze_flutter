@@ -1,3 +1,3 @@
-abstract class httpClient {
+abstract class HttpClient {
   get(String url);
 }

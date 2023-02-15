@@ -6,8 +6,8 @@ enum FavoritesStatus { initial, loading, loaded, empty }
 class FavoritesState extends Equatable {
   final FavoritesStatus status;
 
-  List<TvShow>? favoritesList;
-  List<TvShow>? filtredList;
+  final List<TvShow>? favoritesList;
+  final List<TvShow>? filtredList;
 
   FavoritesState({required this.status, this.favoritesList, this.filtredList});
 

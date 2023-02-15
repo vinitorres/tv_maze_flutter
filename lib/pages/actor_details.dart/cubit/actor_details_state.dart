@@ -5,7 +5,7 @@ enum ActorDetailsStatus { initial, loading, loaded, error }
 
 class ActorDetailsState extends Equatable {
   final ActorDetailsStatus status;
-  List<TvShow>? actorSeries;
+  final List<TvShow>? actorSeries;
 
   ActorDetailsState({
     required this.status,

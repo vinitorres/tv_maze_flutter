@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows_app/entities/episode.dart';
-import 'package:tv_shows_app/dialogs/episode_details/episode_details_dialog.dart';
 import 'package:tv_shows_app/navigation/navigation_routes.dart';
 import 'package:tv_shows_app/pages/tv_show_details/widgets/episode_image_placeholder.dart';
 import 'package:tv_shows_app/shared/constants/app_values.dart';

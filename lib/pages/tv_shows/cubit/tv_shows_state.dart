@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'tv_shows_cubit.dart';
 
 enum TvShowsStatus { initial, loading, loadingMore, loaded, empty, error }
@@ -6,7 +5,7 @@ enum TvShowsStatus { initial, loading, loadingMore, loaded, empty, error }
 class TvShowsState extends Equatable {
   final TvShowsStatus status;
 
-  List<TvShow>? tvShowList;
+  final List<TvShow>? tvShowList;
 
   TvShowsState({
     required this.status,
