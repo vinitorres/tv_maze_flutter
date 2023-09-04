@@ -62,7 +62,7 @@ class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
   }
 
   addOrRemoveFromFavorites() {
-    favoritesLocalDataSource.favorite(tvShow);
+    favoritesLocalDataSource.setFavorite(tvShow);
     favoritesHasChange = true;
   }
 }

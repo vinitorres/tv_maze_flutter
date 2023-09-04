@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class FavoritesLocalDataSource {
   Future<List<TvShow>> getFavorites();
-  favorite(TvShow tvShow);
+  setFavorite(TvShow tvShow);
   Future<bool> isFavorite(TvShow tvShow);
 }
 
@@ -22,7 +22,7 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
     return TvShow.decode(favoritesJson);
   }
 
-  favorite(TvShow tvShow) async {
+  setFavorite(TvShow tvShow) async {
     final prefs = await _getInstance();
     List<TvShow> favorites = await getFavorites();
     bool isFavorite = await this.isFavorite(tvShow);

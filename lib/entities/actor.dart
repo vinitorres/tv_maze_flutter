@@ -27,28 +27,4 @@ class Actor {
         birthday: json['birthday'] != null ? DateTime.parse(json['birthday']) : null,
     );
   }
-
-  Map<String, dynamic> toJson(){
-    return {
-      'id': id,
-      'name': name,
-      'image':{
-        'medium': thumb,
-        'original': poster
-      },
-      'country': country,
-      'birthday': birthday?.toIso8601String(),
-    };
-  }
-
-  Actor copy(){
-    return Actor(
-      id: id,
-      name: name,
-      country: country,
-      thumb: thumb,
-      poster: poster,
-      birthday: birthday
-    );
-  }
 }

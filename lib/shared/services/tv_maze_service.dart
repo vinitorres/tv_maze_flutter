@@ -3,6 +3,15 @@ import 'package:tv_shows_app/entities/actor.dart';
 import 'package:tv_shows_app/entities/episode.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
 
+class TvMazeEndpoints {
+  static const String tvShows = 'shows?page={page}';
+  static const String episodes = 'shows/{id}/episodes';
+  static const String search = 'search';
+  static const String cast = 'cast';
+  static const String people = 'people';
+  static const String castcredits = 'castcredits';
+}
+
 abstract class TvMazeService {
   Future<List<TvShow>> getTvShows({int page = 0});
   Future<List<Episode>> getEpisodes({required int id});
@@ -18,7 +27,8 @@ class TvMazeServiceImpl implements TvMazeService {
   Future<List<TvShow>> getTvShows({int page = 0}) async {
     var tvShows = <TvShow>[];
     try {
-      var result = await _dio.get('shows?page=$page');
+      var result = await _dio
+          .get(TvMazeEndpoints.tvShows.replaceFirst('{page}', page.toString()));
       for (var element in result.data) {
         tvShows.add(TvShow.fromJson(element));
       }
@@ -31,7 +41,8 @@ class TvMazeServiceImpl implements TvMazeService {
   Future<List<Episode>> getEpisodes({required int id}) async {
     var episodes = <Episode>[];
     try {
-      var result = await _dio.get('shows/$id/episodes');
+      var result = await _dio.get(TvMazeEndpoints.episodes.replaceFirst(
+          '{id}', id.toString()));
       for (var element in result.data) {
         episodes.add(Episode.fromJson(element));
       }

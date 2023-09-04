@@ -3,7 +3,7 @@ import 'package:tv_shows_app/entities/actor.dart';
 import 'package:tv_shows_app/entities/episode.dart';
 import 'package:tv_shows_app/entities/tv_show.dart';
 import 'package:tv_shows_app/pages/actor_details.dart/actor_details_page.dart';
-import 'package:tv_shows_app/dialogs/episode_details/episode_details_dialog.dart';
+import 'package:tv_shows_app/pages/episode_details/episode_details_dialog.dart';
 import 'package:tv_shows_app/pages/tv_show_details/tv_show_details_page.dart';
 import 'package:tv_shows_app/navigation/navigation_routes.dart';
 import 'package:tv_shows_app/pages/home/home_page.dart';
