@@ -7,7 +7,7 @@ abstract class IFavoritesLocalDataSource {
   Future<bool> isFavorite(TvShow tvShow);
 }
 
-class FavoritesLocalDataSourceImpl implements IFavoritesLocalDataSource {
+class FavoritesLocalDataSource implements IFavoritesLocalDataSource {
   Future<SharedPreferences> _getInstance() async {
     SharedPreferences instance = await SharedPreferences.getInstance();
     return instance;

@@ -16,6 +16,8 @@ configureDependencies() {
 
   // Data Sources
   getIt.registerFactory<ITvMazeDataSource>(() => TvMazeDataSource());
+  getIt.registerFactory<IFavoritesLocalDataSource>(
+      () => FavoritesLocalDataSource());
 
   // Repositories
   getIt.registerLazySingleton<ITvMazeRepository>(
@@ -25,6 +27,8 @@ configureDependencies() {
 
   // Use Cases
   getIt.registerFactory<IGetTvShowsUsecase>(() => GetTvShowsUsecase(getIt()));
+  getIt.registerFactory<ISearchTvShowUsecase>(
+      () => SearchTvShowUsecase(getIt()));
   getIt.registerFactory<IGetEpisodesUsecase>(() => GetEpisodesUsecase(getIt()));
   getIt.registerFactory<IGetCastUsecase>(() => GetCastUsecase(getIt()));
   getIt.registerFactory<IGetActorSeriesUsecase>(
@@ -37,8 +41,11 @@ configureDependencies() {
 
   //Cubits
   getIt.registerLazySingleton(() => TvShowsCubit(getIt(), getIt()));
-  getIt.registerFactory(() => TvShowDetailsCubit(getIt<IGetEpisodesUsecase>(),
-      getIt<IGetCastUsecase>(), getIt(), getIt()));
-  getIt.registerFactory(() => ActorDetailsViewModel(getIt()));
+  getIt.registerLazySingleton(() => TvShowDetailsCubit(
+      getIt<IGetEpisodesUsecase>(),
+      getIt<IGetCastUsecase>(),
+      getIt(),
+      getIt()));
+  getIt.registerLazySingleton(() => ActorDetailsViewModel(getIt()));
   getIt.registerLazySingleton(() => FavoritesCubit(getIt()));
 }
