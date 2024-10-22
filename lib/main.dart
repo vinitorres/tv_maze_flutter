@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/shared/constants/app_colors.dart';
-import 'package:tv_shows_app/injection/dependency_injection.dart';
-import 'package:tv_shows_app/navigation/navigation_router.dart';
-import 'package:tv_shows_app/navigation/navigation_routes.dart';
+import 'package:tv_shows_app/src/shared/constants/app_colors.dart';
+import 'package:tv_shows_app/src/shared/injection/dependency_injection.dart';
+import 'package:tv_shows_app/src/navigation/navigation_router.dart';
+import 'package:tv_shows_app/src/navigation/navigation_routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
