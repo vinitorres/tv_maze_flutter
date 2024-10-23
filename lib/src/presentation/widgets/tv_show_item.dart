@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/src/domain/entities/tv_show.dart';
-import 'package:tv_shows_app/src/presentation/pages/favorites/favorites_cubit.dart';
-import 'package:tv_shows_app/src/shared/injection/dependency_injection.dart';
-import 'package:tv_shows_app/src/navigation/navigation_routes.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
-import 'package:tv_shows_app/src/presentation/widgets/tv_show_empty_placeholder.dart';
 
+import '../../domain/entities/tv_show.dart';
+import '../../navigation/navigation_routes.dart';
+import '../../shared/constants/app_values.dart';
+import '../../infrastructure/injection/dependency_injection.dart';
+import '../pages/favorites/favorites_cubit.dart';
+import 'tv_show_empty_placeholder.dart';
+
+/// Widget to display a TV show item
 class TvShowItem extends StatefulWidget {
+  /// Constructor [TvShowItem]
   const TvShowItem({super.key, required this.tvShow});
 
+  /// TV show to display
   final TvShow tvShow;
 
   @override
@@ -22,9 +26,10 @@ class _TvShowItemState extends State<TvShowItem> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        var navigationResult = await Navigator.of(context).pushNamed(
-            NavigationRoutes.tvShowDetails,
-            arguments: widget.tvShow);
+        final navigationResult = await Navigator.of(context).pushNamed(
+          NavigationRoutes.tvShowDetails,
+          arguments: widget.tvShow,
+        );
 
         if (navigationResult == true) {
           cubit.loadFavorites();
@@ -47,15 +52,17 @@ class _TvShowItemState extends State<TvShowItem> {
               children: [
                 Spacer(),
                 Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(8),
-                    color: Colors.black.withOpacity(0.5),
-                    child: Text(
-                      widget.tvShow.name,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: AppValues.defaultFontSize),
-                    )),
+                  width: double.infinity,
+                  padding: EdgeInsets.all(8),
+                  color: Colors.black.withOpacity(0.5),
+                  child: Text(
+                    widget.tvShow.name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: AppValues.defaultFontSize,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

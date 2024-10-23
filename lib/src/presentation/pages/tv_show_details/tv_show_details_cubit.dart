@@ -1,5 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:tv_shows_app/src/domain/domain.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../domain/domain.dart';
 
 part 'tv_show_details_state.dart';
 
@@ -26,20 +27,24 @@ class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
   _loadCast(TvShow tvShow) async {
     emit(state.copyWith(status: TvShowDetailsStatus.loadingCast));
 
-    var response = await _getCastUsecase.call(tvShow.id);
+    final response = await _getCastUsecase.call(tvShow.id);
 
-    emit(response.fold((error) {
-      return state.copyWith(status: TvShowDetailsStatus.errorCast);
-    }, (success) {
-      return state.copyWith(
-          status: TvShowDetailsStatus.loadedCast, cast: success);
-    }));
+    emit(
+      response.fold((error) {
+        return state.copyWith(status: TvShowDetailsStatus.errorCast);
+      }, (success) {
+        return state.copyWith(
+          status: TvShowDetailsStatus.loadedCast,
+          cast: success,
+        );
+      }),
+    );
   }
 
   _loadEpisodes(TvShow tvShow) async {
     emit(state.copyWith(status: TvShowDetailsStatus.loadingEpisodes));
 
-    var response = await _getEpisodesUsecase.call(tvShow.id);
+    final response = await _getEpisodesUsecase.call(tvShow.id);
 
     emit(
       response.fold(
@@ -47,11 +52,14 @@ class TvShowDetailsCubit extends Cubit<TvShowDetailsState> {
           return state.copyWith(status: TvShowDetailsStatus.errorEpisodes);
         },
         (r) {
-          if (r.isEmpty)
+          if (r.isEmpty) {
             return state.copyWith(status: TvShowDetailsStatus.errorEpisodes);
+          }
 
           return state.copyWith(
-              status: TvShowDetailsStatus.loadedEpisodes, episodes: r);
+            status: TvShowDetailsStatus.loadedEpisodes,
+            episodes: r,
+          );
         },
       ),
     );

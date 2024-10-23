@@ -1,24 +1,25 @@
-part of 'tv_shows_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum TvShowsStatus { initial, loading, loadingMore, loaded, empty, error }
+import '../../../domain/entities/entities.dart';
 
-class TvShowsState {
-  final TvShowsStatus status;
+part 'tv_shows_state.freezed.dart';
 
-  final List<TvShow>? tvShowList;
+/// State for TvShowsPage
+@freezed
+sealed class TvShowsState with _$TvShowsState {
+  const factory TvShowsState.loading() = TvShowsStateLoading;
 
-  TvShowsState({
-    required this.status,
-    this.tvShowList,
-  });
-  
-  TvShowsState copyWith({
-    TvShowsStatus? status,
-    List<TvShow>? tvShowList,
-  }) {
-    return TvShowsState(
-      status: status ?? this.status,
-      tvShowList: tvShowList ?? this.tvShowList,
-    );
-  }
+  const factory TvShowsState.loadingMore({
+    required List<TvShow> tvShowList,
+  }) = TvShowsStateLoadingMore;
+
+  const factory TvShowsState.loaded({
+    required List<TvShow> tvShowList,
+  }) = TvShowsStateLoaded;
+
+  const factory TvShowsState.empty() = TvShowsStateEmpty;
+
+  const factory TvShowsState.error({
+    required String message,
+  }) = TvShowsStateError;
 }

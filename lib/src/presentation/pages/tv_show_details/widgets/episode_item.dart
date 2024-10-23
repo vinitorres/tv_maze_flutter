@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/src/domain/entities/episode.dart';
-import 'package:tv_shows_app/src/navigation/navigation_routes.dart';
-import 'package:tv_shows_app/src/presentation/pages/tv_show_details/widgets/episode_image_placeholder.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
 
+import '../../../../domain/entities/episode.dart';
+import '../../../../navigation/navigation_routes.dart';
+import '../../../../shared/constants/app_values.dart';
+import 'episode_image_placeholder.dart';
+
+/// Widget to display an episode item
 class EpisodeItem extends StatelessWidget {
-  const EpisodeItem({Key? key, required this.episode}) : super(key: key);
+  /// Constructor [EpisodeItem]
+  const EpisodeItem({super.key, required this.episode});
 
+  /// Episode to display
   final Episode episode;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, NavigationRoutes.episodeDetails,
-            arguments: episode);
+        Navigator.pushNamed(
+          context,
+          NavigationRoutes.episodeDetails,
+          arguments: episode,
+        );
       },
       child: Container(
         clipBehavior: Clip.hardEdge,
@@ -41,12 +48,16 @@ class EpisodeItem extends StatelessWidget {
                 children: [
                   Spacer(),
                   Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: AppValues.defaultMediumPadding),
-                      child: Text('${episode.number} : ${episode.name}',
-                          style: TextStyle(color: Colors.white))),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppValues.defaultMediumPadding,
+                    ),
+                    child: Text(
+                      '${episode.number} : ${episode.name}',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

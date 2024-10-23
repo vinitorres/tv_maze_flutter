@@ -2,16 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_shows_app/src/domain/entities/actor.dart';
-import 'package:tv_shows_app/src/presentation/pages/actor_details/actor_details_view_model.dart';
-import 'package:tv_shows_app/src/presentation/widgets/tv_shows_list.dart';
-import 'package:tv_shows_app/src/shared/constants/app_colors.dart';
-import 'package:tv_shows_app/src/shared/constants/app_strings.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
-import 'package:tv_shows_app/src/shared/injection/dependency_injection.dart';
+
+import '../../../domain/entities/actor.dart';
+import '../../../shared/constants/app_colors.dart';
+import '../../../shared/constants/app_values.dart';
+import '../../../infrastructure/injection/dependency_injection.dart';
+import '../../i18n/translations.g.dart';
+import '../../widgets/tv_shows_list.dart';
+import 'actor_details_view_model.dart';
 
 class ActorDetailsPage extends StatefulWidget {
-  ActorDetailsPage({super.key, required this.actor});
+  const ActorDetailsPage({super.key, required this.actor});
 
   final Actor actor;
 
@@ -57,7 +58,9 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(
-                  horizontal: 16, vertical: AppValues.defaultMediumPadding),
+                horizontal: 16,
+                vertical: AppValues.defaultMediumPadding,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -71,7 +74,7 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
                   ),
                   SizedBox(height: AppValues.defaultLargerPadding),
                   Text(
-                    AppStrings.tvShows,
+                    t.tvShows,
                     style: TextStyle(
                       fontSize: AppValues.defaultMediumFontSize,
                       fontWeight: FontWeight.bold,
@@ -92,7 +95,9 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
                 }
                 if (state.status == ActorDetailsStatus.loaded) {
                   return TvShowList(
-                      tvShowList: state.actorSeries ?? [], scrollable: false);
+                    tvShowList: state.actorSeries ?? [],
+                    scrollable: false,
+                  );
                 }
                 return Container();
               },

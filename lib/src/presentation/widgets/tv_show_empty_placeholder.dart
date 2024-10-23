@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// Widget to display an empty placeholder for a TV show
 class TvShowEmptyPlaceholder extends StatelessWidget {
-  const TvShowEmptyPlaceholder({Key? key}) : super(key: key);
+  /// Constructor [TvShowEmptyPlaceholder]
+  const TvShowEmptyPlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,11 @@ class TvShowEmptyPlaceholder extends StatelessWidget {
         ),
         child: Placeholder(
           child: Center(
-              child: Icon(
-            Icons.movie_outlined,
-            size: 40,
-          )),
+            child: Icon(
+              Icons.movie_outlined,
+              size: 40,
+            ),
+          ),
         ),
       ),
     );

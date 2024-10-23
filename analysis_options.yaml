@@ -13,7 +13,6 @@ analyzer:
     - "**/*.mocks.dart"
 linter:
   rules:
-    public_member_api_docs: true
     directives_ordering: true
     prefer_relative_imports: true
     library_private_types_in_public_api: false

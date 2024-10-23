@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:tv_shows_app/src/domain/repositories/tv_maze_repository.dart';
 
 import '../entities/tv_show.dart';
+import '../repositories/tv_maze_repository.dart';
 
 abstract class IGetActorSeriesUsecase {
   Future<Either<Exception, List<TvShow>>> call(int actorId);

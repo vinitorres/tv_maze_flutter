@@ -1,0 +1,47 @@
+targets:
+  $default:
+    builders:
+      slang_build_runner:
+        options:
+          base_locale: en
+          fallback_strategy: base_locale
+          input_directory: assets/i18n
+          input_file_pattern: .i18n.json
+          output_directory: lib/src/presentation/i18n
+          output_file_name: translations.g.dart
+          lazy: true
+          locale_handling: true
+          flutter_integration: true
+          namespaces: false
+          translate_var: t
+          enum_name: AppLocale
+          class_name: Translations
+          key_case: camel
+          key_map_case: camel
+          param_case: pascal
+          string_interpolation: braces
+          flat_map: false
+          translation_overrides: false
+          timestamp: true
+          statistics: true
+          pluralization:
+            default_parameter: count
+
+# targets:
+#   $default:
+#     builders:
+#       slang_build_runner:
+#         options:
+#           base_locale: en
+#           fallback_strategy: base_locale
+#           input_directory: assets/i18n
+#           input_file_pattern: .i18n.json
+#           string_interpolation: braces
+#           output_directory: lib//presentation/i18n
+#           output_file_name: i18n.g.dart
+#           output_format: single_file
+#           locale_handling: false
+#           translation_class_visibility: public
+#           namespaces: true
+#           pluralization:
+#             default_parameter: count

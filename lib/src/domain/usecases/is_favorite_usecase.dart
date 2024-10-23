@@ -1,6 +1,5 @@
-import 'package:tv_shows_app/src/domain/repositories/favorites_repository.dart';
-
 import '../entities/entities.dart';
+import '../repositories/favorites_repository.dart';
 
 abstract class IIsFavoriteUsecase {
   Future<bool> call(TvShow tvShow);

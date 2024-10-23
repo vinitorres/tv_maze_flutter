@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:tv_shows_app/src/domain/repositories/tv_maze_repository.dart';
 
 import '../entities/entities.dart';
+import '../repositories/tv_maze_repository.dart';
 
 abstract class IGetEpisodesUsecase {
   Future<Either<Exception, List<Episode>>> call(int tvShowId);

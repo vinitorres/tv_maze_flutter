@@ -14,10 +14,11 @@ class EpisodeImagePlaceholder extends StatelessWidget {
         width: MediaQuery.of(context).size.width * .6,
         child: Placeholder(
           child: Center(
-              child: Icon(
-            Icons.movie_outlined,
-            size: 40,
-          )),
+            child: Icon(
+              Icons.movie_outlined,
+              size: 40,
+            ),
+          ),
         ),
       ),
     );

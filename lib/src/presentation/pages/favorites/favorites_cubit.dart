@@ -1,6 +1,7 @@
-import 'package:bloc/bloc.dart';
-import 'package:tv_shows_app/src/domain/entities/tv_show.dart';
-import 'package:tv_shows_app/src/domain/usecases/get_favorities_usecase.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../domain/entities/tv_show.dart';
+import '../../../domain/usecases/get_favorities_usecase.dart';
 
 part 'favorites_state.dart';
 
@@ -23,13 +24,16 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           return state.copyWith(status: FavoritesStatus.empty);
         },
         (r) {
-          if (r.isNotEmpty)
+          if (r.isNotEmpty) {
             return state.copyWith(status: FavoritesStatus.empty);
+          }
 
           r.sort((a, b) => a.name.compareTo(b.name));
 
           return state.copyWith(
-              status: FavoritesStatus.loaded, favoritesList: r);
+            status: FavoritesStatus.loaded,
+            favoritesList: r,
+          );
         },
       ),
     );
@@ -38,16 +42,24 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   searchFavorites(String query) async {
     state.filtredList?.clear();
 
-    state.filtredList?.addAll(state.favoritesList!
-        .where((element) =>
-            element.name.toLowerCase().contains(query.toLowerCase()))
-        .toList());
+    state.filtredList?.addAll(
+      state.favoritesList!
+          .where(
+            (element) =>
+                element.name.toLowerCase().contains(query.toLowerCase()),
+          )
+          .toList(),
+    );
 
     if (state.filtredList!.isEmpty) {
       emit(state.copyWith(status: FavoritesStatus.empty));
     } else {
-      emit(state.copyWith(
-          status: FavoritesStatus.loaded, filtredList: state.filtredList));
+      emit(
+        state.copyWith(
+          status: FavoritesStatus.loaded,
+          filtredList: state.filtredList,
+        ),
+      );
     }
   }
 }

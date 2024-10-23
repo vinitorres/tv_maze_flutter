@@ -1,6 +1,7 @@
-import 'package:bloc/bloc.dart';
-import 'package:tv_shows_app/src/domain/entities/tv_show.dart';
-import 'package:tv_shows_app/src/domain/usecases/get_actor_series_usecase.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../domain/entities/tv_show.dart';
+import '../../../domain/usecases/get_actor_series_usecase.dart';
 
 part 'actor_details_state.dart';
 
@@ -22,7 +23,9 @@ class ActorDetailsViewModel extends Cubit<ActorDetailsState> {
         },
         (success) {
           return state.copyWith(
-              status: ActorDetailsStatus.loaded, actorSeries: success);
+            status: ActorDetailsStatus.loaded,
+            actorSeries: success,
+          );
         },
       ),
     );

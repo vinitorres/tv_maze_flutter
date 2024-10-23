@@ -1,11 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:fpdart/fpdart.dart';
-import 'package:tv_shows_app/src/data/datasources/remote/tv_maze_datasource.dart';
-import 'package:tv_shows_app/src/domain/entities/actor.dart';
-import 'package:tv_shows_app/src/domain/entities/episode.dart';
-import 'package:tv_shows_app/src/domain/entities/tv_show.dart';
 
-import '../../domain/repositories/tv_maze_repository.dart';
+import '../../domain/domain.dart';
+import '../datasources/datasources.dart';
 
 class TvMazeRepository implements ITvMazeRepository {
   final ITvMazeDataSource _tvMazeDataSource;
@@ -25,8 +22,10 @@ class TvMazeRepository implements ITvMazeRepository {
   }
 
   @override
-  Future<Either<Exception, List<TvShow>>> searchTvShows(
-      {required String name, int? page = 0}) async {
+  Future<Either<Exception, List<TvShow>>> searchTvShows({
+    required String name,
+    int? page = 0,
+  }) async {
     try {
       final response = await _tvMazeDataSource.searchTvShow(query: name);
       return Right(response.map((e) => e.toEntity()).toList());

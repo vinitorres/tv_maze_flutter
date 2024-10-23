@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:tv_shows_app/src/presentation/pages/favorites/favorites_cubit.dart';
-import 'package:tv_shows_app/src/shared/constants/app_strings.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
-import 'package:tv_shows_app/src/presentation/widgets/loading_with_text.dart';
-import 'package:tv_shows_app/src/presentation/widgets/tv_shows_empty.dart';
-import 'package:tv_shows_app/src/presentation/widgets/tv_shows_list.dart';
+
+import '../../../shared/constants/app_values.dart';
+import '../../i18n/translations.g.dart';
+import '../../widgets/loading_with_text.dart';
+import '../../widgets/tv_shows_empty.dart';
+import '../../widgets/tv_shows_list.dart';
+import 'favorites_cubit.dart';
 
 class FavoritesPage extends StatefulWidget {
-  FavoritesPage({super.key});
+  const FavoritesPage({super.key});
 
   @override
   State<FavoritesPage> createState() => _FavoritesPageState();
@@ -33,16 +34,19 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return Column(
       children: [
         AppBar(
-          title: const Text(
-            AppStrings.favorites,
+          title: Text(
+            t.favorites,
             style: TextStyle(
-                color: Colors.white, fontSize: AppValues.defaultLargerFontSize),
+              color: Colors.white,
+              fontSize: AppValues.defaultLargerFontSize,
+            ),
           ),
         ),
         Container(
           height: 60,
           padding: const EdgeInsets.symmetric(
-              horizontal: AppValues.defaultLargerPadding),
+            horizontal: AppValues.defaultLargerPadding,
+          ),
           child: TextField(
             controller: _searchController,
             onChanged: (value) {
@@ -65,7 +69,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 color: Colors.white.withAlpha(200),
               ),
               suffix: clearButtonVisibility
-                  ? Container(
+                  ? SizedBox(
                       width: 30,
                       height: 30,
                       child: IconButton(
@@ -81,7 +85,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ),
                     )
                   : null,
-              hintText: AppStrings.favoritesSearchHint,
+              hintText: t.favoritesSearchHint,
               filled: true,
               fillColor: Colors.grey.withAlpha(80),
               hintStyle: TextStyle(color: Colors.grey),
@@ -96,7 +100,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           bloc: cubit,
           builder: ((_, state) {
             if (state.status == FavoritesStatus.empty) {
-              return TvShowEmpty(AppStrings.favoritesEmpty);
+              return TvShowEmpty(t.favoritesEmpty);
             }
 
             if (state.status == FavoritesStatus.loaded) {
@@ -111,7 +115,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             }
 
             return LoadingWithText(
-              placeholderText: AppStrings.favoritesLoading,
+              placeholderText: t.favoritesLoading,
             );
           }),
         ),

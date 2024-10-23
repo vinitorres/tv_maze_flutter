@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/src/domain/entities/tv_show.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
-import 'package:tv_shows_app/src/presentation/widgets/tv_show_item.dart';
 
+import '../../domain/entities/tv_show.dart';
+import '../../shared/constants/app_values.dart';
+import 'tv_show_item.dart';
+
+/// Widget to display a list of TV shows
 class TvShowList extends StatefulWidget {
-  TvShowList(
-      {super.key, required this.tvShowList, this.onLoadMore, this.scrollable});
+  /// Constructor [TvShowList]
+  const TvShowList({
+    super.key,
+    required this.tvShowList,
+    this.onLoadMore,
+    this.scrollable,
+  });
 
+  /// List of TV shows
   final List<TvShow> tvShowList;
+
+  /// Function to load more TV shows
   final Function? onLoadMore;
+
+  /// Scrollable
   final bool? scrollable;
 
   @override

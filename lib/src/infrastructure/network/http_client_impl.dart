@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:tv_shows_app/src/infrastructure/network/http_client.dart';
+
+import 'http_client.dart';
 
 class HttpClientImpl extends HttpClient {
   final Dio client;
@@ -10,5 +11,4 @@ class HttpClientImpl extends HttpClient {
   get(String url) {
     return client.get(url);
   }
-  
 }

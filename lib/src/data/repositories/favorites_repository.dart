@@ -1,12 +1,14 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:tv_shows_app/src/domain/entities/tv_show.dart';
 
+import '../../domain/entities/tv_show.dart';
 import '../../domain/repositories/favorites_repository.dart';
 import '../datasources/local/favorites_local_datasource.dart';
 
+/// Implementation of [IFavoritesRepository]
 class FavoritesRepository implements IFavoritesRepository {
   final IFavoritesLocalDataSource _favoritesLocalDataSource;
 
+  /// Constructor [FavoritesRepository]
   FavoritesRepository(this._favoritesLocalDataSource);
 
   @override

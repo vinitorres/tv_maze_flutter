@@ -1,15 +1,23 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tv_shows_app/src/domain/entities/entities.dart';
 
+import '../../../domain/entities/entities.dart';
+
+/// Data source to manage favorites on local storage
 abstract class IFavoritesLocalDataSource {
+  /// Get all favorites
   Future<List<TvShow>> getFavorites();
+
+  /// Toggle favorite status
   void toggleFavorite(TvShow tvShow);
+
+  /// Check if a tv show is favorite
   Future<bool> isFavorite(TvShow tvShow);
 }
 
+/// Implementation of [IFavoritesLocalDataSource]
 class FavoritesLocalDataSource implements IFavoritesLocalDataSource {
   Future<SharedPreferences> _getInstance() async {
-    SharedPreferences instance = await SharedPreferences.getInstance();
+    final SharedPreferences instance = await SharedPreferences.getInstance();
     return instance;
   }
 
@@ -20,23 +28,23 @@ class FavoritesLocalDataSource implements IFavoritesLocalDataSource {
     if (favoritesJson.isEmpty) {
       return [];
     }
-    return TvShow.decode(favoritesJson);
+    return [];
+    // return TvShowModel.decode(favoritesJson);
   }
 
   @override
   toggleFavorite(TvShow tvShow) async {
-    final prefs = await _getInstance();
-    List<TvShow> favorites = await getFavorites();
-    bool isFavorite = await this.isFavorite(tvShow);
+    // final prefs = await _getInstance();
+    // final List<TvShow> favorites = await getFavorites();
+    // final bool isFavorite = await this.isFavorite(tvShow);
 
-    if (isFavorite) {
-      favorites.removeWhere((element) => element.id == tvShow.id);
-    } else {
-      favorites.add(tvShow);
-    }
+    // if (isFavorite) {
+    //   favorites.removeWhere((element) => element.id == tvShow.id);
+    // } else {
+    //   favorites.add(tvShow);
+    // }
 
-    // prefs.setString('favorites', TvShow.encode(favorites));
-    print('favorites size: ${favorites.length}');
+    //   prefs.setString('favorites', TvShow.encode(favorites));
   }
 
   @override

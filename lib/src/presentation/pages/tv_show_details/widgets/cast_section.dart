@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_shows_app/src/presentation/pages/tv_show_details/tv_show_details_cubit.dart';
-import 'package:tv_shows_app/src/presentation/pages/tv_show_details/widgets/cast_list.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
+
+import '../../../../shared/constants/app_values.dart';
+import '../tv_show_details_cubit.dart';
+import 'cast_list.dart';
 
 class CastSection extends StatelessWidget {
-  CastSection({super.key, required this.cubit});
+  const CastSection({super.key, required this.cubit});
 
   final TvShowDetailsCubit cubit;
 
@@ -20,7 +21,9 @@ class CastSection extends StatelessWidget {
           Text(
             'Cast',
             style: TextStyle(
-                fontSize: AppValues.defaultLargerFontSize, color: Colors.white),
+              fontSize: AppValues.defaultLargerFontSize,
+              color: Colors.white,
+            ),
           ),
           SizedBox(height: 8),
           BlocBuilder<TvShowDetailsCubit, TvShowDetailsState>(

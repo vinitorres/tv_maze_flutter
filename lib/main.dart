@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/src/shared/constants/app_colors.dart';
-import 'package:tv_shows_app/src/shared/injection/dependency_injection.dart';
-import 'package:tv_shows_app/src/navigation/navigation_router.dart';
-import 'package:tv_shows_app/src/navigation/navigation_routes.dart';
 
-void main() {
+import 'src/navigation/navigation_router.dart';
+import 'src/navigation/navigation_routes.dart';
+import 'src/shared/constants/app_colors.dart';
+import 'src/infrastructure/injection/dependency_injection.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await initSetup();
   runApp(const MyApp());
 }
 
+/// Main application widget
 class MyApp extends StatelessWidget {
+  /// Constructor [MyApp]
   const MyApp({super.key});
 
   @override
@@ -21,7 +24,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.appBackgroundColor,
         appBarTheme: AppBarTheme(
-            backgroundColor: AppColors.appBackgroundColor, elevation: 0),
+          backgroundColor: AppColors.appBackgroundColor,
+          elevation: 0,
+        ),
         primarySwatch: Colors.grey,
       ),
       initialRoute: NavigationRoutes.initialRoute,

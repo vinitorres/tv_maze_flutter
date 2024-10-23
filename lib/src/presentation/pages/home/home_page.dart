@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows_app/src/presentation/pages/favorites/favorites_page.dart';
-import 'package:tv_shows_app/src/presentation/pages/tv_shows/tv_shows_page.dart';
-import 'package:tv_shows_app/src/shared/constants/app_colors.dart';
-import 'package:tv_shows_app/src/shared/constants/app_strings.dart';
 
+import '../../../shared/constants/constants.dart';
+import '../../i18n/translations.g.dart';
+import '../favorites/favorites_page.dart';
+import '../tv_shows/tv_shows_page.dart';
+
+/// Home page with bottom navigation bar
 class HomePage extends StatefulWidget {
+  /// Constructor [HomePage]
   const HomePage({super.key});
 
   @override
@@ -17,23 +20,18 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> pages = [TvShowsPage(), FavoritesPage()];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.movie_filter),
-            label: AppStrings.tvShows,
+            label: 'TV Shows',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: AppStrings.favorites,
+            label: t.favorites,
           ),
         ],
         currentIndex: _selectedIndex,

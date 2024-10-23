@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_shows_app/src/presentation/pages/tv_show_details/tv_show_details_cubit.dart';
-import 'package:tv_shows_app/src/presentation/pages/tv_show_details/widgets/episodes_list.dart';
-import 'package:tv_shows_app/src/shared/constants/app_values.dart';
 
+import '../../../../shared/constants/app_values.dart';
+import '../tv_show_details_cubit.dart';
+import 'episodes_list.dart';
+
+/// Widget to display the episodes section
 class EpisodesSection extends StatelessWidget {
-  EpisodesSection({super.key, required this.cubit});
+  /// Constructor [EpisodesSection]
+  const EpisodesSection({super.key, required this.cubit});
 
+  /// Cubit for the TV show details
   final TvShowDetailsCubit cubit;
 
   @override
@@ -19,7 +23,9 @@ class EpisodesSection extends StatelessWidget {
           Text(
             'Episodes',
             style: TextStyle(
-                fontSize: AppValues.defaultLargerFontSize, color: Colors.white),
+              fontSize: AppValues.defaultLargerFontSize,
+              color: Colors.white,
+            ),
           ),
           SizedBox(height: 8),
           BlocBuilder<TvShowDetailsCubit, TvShowDetailsState>(
