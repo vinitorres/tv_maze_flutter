@@ -1,0 +1,15 @@
+{
+    "tvShows": "Tv Shows",
+    "season": "Season",
+    "episode ": "Episode",
+    "summary": "Summary",
+    "favorites": "Favorites",
+    "at": "at",
+    "tvShowsSearchHint": "Search Tv Shows",
+    "tvShowsEmpty": "No tv shows found",
+    "tvShowsLoading": "Loading tv shows...",
+    "favoritesSearchHint": "Search on favorites",
+    "favoritesEmpty": "No favorites found",
+    "favoritesLoading": "Loading favorites...",
+    "tvShowDetailsDaysAndTime": "Days and Time"
+}
