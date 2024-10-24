@@ -18,14 +18,13 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TvShow {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get posterUrl => throw _privateConstructorUsedError;
+  ImageSource get imageSource => throw _privateConstructorUsedError;
   DateTime? get airs => throw _privateConstructorUsedError;
   DateTime? get premiered => throw _privateConstructorUsedError;
   DateTime? get ended => throw _privateConstructorUsedError;
+  Schedule? get schedule => throw _privateConstructorUsedError;
   List<String> get genres => throw _privateConstructorUsedError;
   String get summary => throw _privateConstructorUsedError;
-  List<Episode> get episodes => throw _privateConstructorUsedError;
-  Schedule get schedule => throw _privateConstructorUsedError;
 
   /// Create a copy of TvShow
   /// with the given fields replaced by the non-null parameter values.
@@ -41,16 +40,15 @@ abstract class $TvShowCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String posterUrl,
+      ImageSource imageSource,
       DateTime? airs,
       DateTime? premiered,
       DateTime? ended,
+      Schedule? schedule,
       List<String> genres,
-      String summary,
-      List<Episode> episodes,
-      Schedule schedule});
+      String summary});
 
-  $ScheduleCopyWith<$Res> get schedule;
+  $ScheduleCopyWith<$Res>? get schedule;
 }
 
 /// @nodoc
@@ -70,14 +68,13 @@ class _$TvShowCopyWithImpl<$Res, $Val extends TvShow>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? posterUrl = null,
+    Object? imageSource = null,
     Object? airs = freezed,
     Object? premiered = freezed,
     Object? ended = freezed,
+    Object? schedule = freezed,
     Object? genres = null,
     Object? summary = null,
-    Object? episodes = null,
-    Object? schedule = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -88,10 +85,10 @@ class _$TvShowCopyWithImpl<$Res, $Val extends TvShow>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      posterUrl: null == posterUrl
-          ? _value.posterUrl
-          : posterUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -104,6 +101,10 @@ class _$TvShowCopyWithImpl<$Res, $Val extends TvShow>
           ? _value.ended
           : ended // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      schedule: freezed == schedule
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as Schedule?,
       genres: null == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -112,14 +113,6 @@ class _$TvShowCopyWithImpl<$Res, $Val extends TvShow>
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      episodes: null == episodes
-          ? _value.episodes
-          : episodes // ignore: cast_nullable_to_non_nullable
-              as List<Episode>,
-      schedule: null == schedule
-          ? _value.schedule
-          : schedule // ignore: cast_nullable_to_non_nullable
-              as Schedule,
     ) as $Val);
   }
 
@@ -127,8 +120,12 @@ class _$TvShowCopyWithImpl<$Res, $Val extends TvShow>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ScheduleCopyWith<$Res> get schedule {
-    return $ScheduleCopyWith<$Res>(_value.schedule, (value) {
+  $ScheduleCopyWith<$Res>? get schedule {
+    if (_value.schedule == null) {
+      return null;
+    }
+
+    return $ScheduleCopyWith<$Res>(_value.schedule!, (value) {
       return _then(_value.copyWith(schedule: value) as $Val);
     });
   }
@@ -144,17 +141,16 @@ abstract class _$$TvShowImplCopyWith<$Res> implements $TvShowCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String posterUrl,
+      ImageSource imageSource,
       DateTime? airs,
       DateTime? premiered,
       DateTime? ended,
+      Schedule? schedule,
       List<String> genres,
-      String summary,
-      List<Episode> episodes,
-      Schedule schedule});
+      String summary});
 
   @override
-  $ScheduleCopyWith<$Res> get schedule;
+  $ScheduleCopyWith<$Res>? get schedule;
 }
 
 /// @nodoc
@@ -172,14 +168,13 @@ class __$$TvShowImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? posterUrl = null,
+    Object? imageSource = null,
     Object? airs = freezed,
     Object? premiered = freezed,
     Object? ended = freezed,
+    Object? schedule = freezed,
     Object? genres = null,
     Object? summary = null,
-    Object? episodes = null,
-    Object? schedule = null,
   }) {
     return _then(_$TvShowImpl(
       id: null == id
@@ -190,10 +185,10 @@ class __$$TvShowImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      posterUrl: null == posterUrl
-          ? _value.posterUrl
-          : posterUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -206,6 +201,10 @@ class __$$TvShowImplCopyWithImpl<$Res>
           ? _value.ended
           : ended // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      schedule: freezed == schedule
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as Schedule?,
       genres: null == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -214,14 +213,6 @@ class __$$TvShowImplCopyWithImpl<$Res>
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      episodes: null == episodes
-          ? _value._episodes
-          : episodes // ignore: cast_nullable_to_non_nullable
-              as List<Episode>,
-      schedule: null == schedule
-          ? _value.schedule
-          : schedule // ignore: cast_nullable_to_non_nullable
-              as Schedule,
     ));
   }
 }
@@ -232,16 +223,14 @@ class _$TvShowImpl extends _TvShow {
   const _$TvShowImpl(
       {required this.id,
       required this.name,
-      required this.posterUrl,
+      required this.imageSource,
       this.airs,
       this.premiered,
       this.ended,
-      required final List<String> genres,
-      required this.summary,
-      required final List<Episode> episodes,
-      required this.schedule})
+      this.schedule,
+      final List<String> genres = const [],
+      required this.summary})
       : _genres = genres,
-        _episodes = episodes,
         super._();
 
   @override
@@ -249,15 +238,18 @@ class _$TvShowImpl extends _TvShow {
   @override
   final String name;
   @override
-  final String posterUrl;
+  final ImageSource imageSource;
   @override
   final DateTime? airs;
   @override
   final DateTime? premiered;
   @override
   final DateTime? ended;
+  @override
+  final Schedule? schedule;
   final List<String> _genres;
   @override
+  @JsonKey()
   List<String> get genres {
     if (_genres is EqualUnmodifiableListView) return _genres;
     // ignore: implicit_dynamic_type
@@ -266,20 +258,10 @@ class _$TvShowImpl extends _TvShow {
 
   @override
   final String summary;
-  final List<Episode> _episodes;
-  @override
-  List<Episode> get episodes {
-    if (_episodes is EqualUnmodifiableListView) return _episodes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_episodes);
-  }
-
-  @override
-  final Schedule schedule;
 
   @override
   String toString() {
-    return 'TvShow(id: $id, name: $name, posterUrl: $posterUrl, airs: $airs, premiered: $premiered, ended: $ended, genres: $genres, summary: $summary, episodes: $episodes, schedule: $schedule)';
+    return 'TvShow(id: $id, name: $name, imageSource: $imageSource, airs: $airs, premiered: $premiered, ended: $ended, schedule: $schedule, genres: $genres, summary: $summary)';
   }
 
   @override
@@ -289,17 +271,16 @@ class _$TvShowImpl extends _TvShow {
             other is _$TvShowImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.posterUrl, posterUrl) ||
-                other.posterUrl == posterUrl) &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource) &&
             (identical(other.airs, airs) || other.airs == airs) &&
             (identical(other.premiered, premiered) ||
                 other.premiered == premiered) &&
             (identical(other.ended, ended) || other.ended == ended) &&
-            const DeepCollectionEquality().equals(other._genres, _genres) &&
-            (identical(other.summary, summary) || other.summary == summary) &&
-            const DeepCollectionEquality().equals(other._episodes, _episodes) &&
             (identical(other.schedule, schedule) ||
-                other.schedule == schedule));
+                other.schedule == schedule) &&
+            const DeepCollectionEquality().equals(other._genres, _genres) &&
+            (identical(other.summary, summary) || other.summary == summary));
   }
 
   @override
@@ -307,14 +288,13 @@ class _$TvShowImpl extends _TvShow {
       runtimeType,
       id,
       name,
-      posterUrl,
+      imageSource,
       airs,
       premiered,
       ended,
+      schedule,
       const DeepCollectionEquality().hash(_genres),
-      summary,
-      const DeepCollectionEquality().hash(_episodes),
-      schedule);
+      summary);
 
   /// Create a copy of TvShow
   /// with the given fields replaced by the non-null parameter values.
@@ -329,14 +309,13 @@ abstract class _TvShow extends TvShow {
   const factory _TvShow(
       {required final int id,
       required final String name,
-      required final String posterUrl,
+      required final ImageSource imageSource,
       final DateTime? airs,
       final DateTime? premiered,
       final DateTime? ended,
-      required final List<String> genres,
-      required final String summary,
-      required final List<Episode> episodes,
-      required final Schedule schedule}) = _$TvShowImpl;
+      final Schedule? schedule,
+      final List<String> genres,
+      required final String summary}) = _$TvShowImpl;
   const _TvShow._() : super._();
 
   @override
@@ -344,7 +323,7 @@ abstract class _TvShow extends TvShow {
   @override
   String get name;
   @override
-  String get posterUrl;
+  ImageSource get imageSource;
   @override
   DateTime? get airs;
   @override
@@ -352,13 +331,11 @@ abstract class _TvShow extends TvShow {
   @override
   DateTime? get ended;
   @override
+  Schedule? get schedule;
+  @override
   List<String> get genres;
   @override
   String get summary;
-  @override
-  List<Episode> get episodes;
-  @override
-  Schedule get schedule;
 
   /// Create a copy of TvShow
   /// with the given fields replaced by the non-null parameter values.

@@ -22,8 +22,9 @@ TvShowModel _$TvShowModelFromJson(Map<String, dynamic> json) {
 mixin _$TvShowModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image.original', defaultValue: '')
-  String get posterUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  ImageSourceModel get imageSource => throw _privateConstructorUsedError;
+  ScheduleModel? get schedule => throw _privateConstructorUsedError;
   @JsonKey(name: 'airstamp')
   DateTime? get airs => throw _privateConstructorUsedError;
   @JsonKey(name: 'premiered')
@@ -32,8 +33,6 @@ mixin _$TvShowModel {
   DateTime? get ended => throw _privateConstructorUsedError;
   List<String> get genres => throw _privateConstructorUsedError;
   String get summary => throw _privateConstructorUsedError;
-  List<EpisodeModel> get episodes => throw _privateConstructorUsedError;
-  ScheduleModel get schedule => throw _privateConstructorUsedError;
 
   /// Serializes this TvShowModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,16 +53,16 @@ abstract class $TvShowModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      @JsonKey(name: 'image.original', defaultValue: '') String posterUrl,
+      @JsonKey(name: 'image') ImageSourceModel imageSource,
+      ScheduleModel? schedule,
       @JsonKey(name: 'airstamp') DateTime? airs,
       @JsonKey(name: 'premiered') DateTime? premiered,
       @JsonKey(name: 'ended') DateTime? ended,
       List<String> genres,
-      String summary,
-      List<EpisodeModel> episodes,
-      ScheduleModel schedule});
+      String summary});
 
-  $ScheduleModelCopyWith<$Res> get schedule;
+  $ImageSourceModelCopyWith<$Res> get imageSource;
+  $ScheduleModelCopyWith<$Res>? get schedule;
 }
 
 /// @nodoc
@@ -83,14 +82,13 @@ class _$TvShowModelCopyWithImpl<$Res, $Val extends TvShowModel>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? posterUrl = null,
+    Object? imageSource = null,
+    Object? schedule = freezed,
     Object? airs = freezed,
     Object? premiered = freezed,
     Object? ended = freezed,
     Object? genres = null,
     Object? summary = null,
-    Object? episodes = null,
-    Object? schedule = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -101,10 +99,14 @@ class _$TvShowModelCopyWithImpl<$Res, $Val extends TvShowModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      posterUrl: null == posterUrl
-          ? _value.posterUrl
-          : posterUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSourceModel,
+      schedule: freezed == schedule
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as ScheduleModel?,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -125,14 +127,6 @@ class _$TvShowModelCopyWithImpl<$Res, $Val extends TvShowModel>
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      episodes: null == episodes
-          ? _value.episodes
-          : episodes // ignore: cast_nullable_to_non_nullable
-              as List<EpisodeModel>,
-      schedule: null == schedule
-          ? _value.schedule
-          : schedule // ignore: cast_nullable_to_non_nullable
-              as ScheduleModel,
     ) as $Val);
   }
 
@@ -140,8 +134,22 @@ class _$TvShowModelCopyWithImpl<$Res, $Val extends TvShowModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ScheduleModelCopyWith<$Res> get schedule {
-    return $ScheduleModelCopyWith<$Res>(_value.schedule, (value) {
+  $ImageSourceModelCopyWith<$Res> get imageSource {
+    return $ImageSourceModelCopyWith<$Res>(_value.imageSource, (value) {
+      return _then(_value.copyWith(imageSource: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TvShowModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScheduleModelCopyWith<$Res>? get schedule {
+    if (_value.schedule == null) {
+      return null;
+    }
+
+    return $ScheduleModelCopyWith<$Res>(_value.schedule!, (value) {
       return _then(_value.copyWith(schedule: value) as $Val);
     });
   }
@@ -158,17 +166,18 @@ abstract class _$$TvShowModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
-      @JsonKey(name: 'image.original', defaultValue: '') String posterUrl,
+      @JsonKey(name: 'image') ImageSourceModel imageSource,
+      ScheduleModel? schedule,
       @JsonKey(name: 'airstamp') DateTime? airs,
       @JsonKey(name: 'premiered') DateTime? premiered,
       @JsonKey(name: 'ended') DateTime? ended,
       List<String> genres,
-      String summary,
-      List<EpisodeModel> episodes,
-      ScheduleModel schedule});
+      String summary});
 
   @override
-  $ScheduleModelCopyWith<$Res> get schedule;
+  $ImageSourceModelCopyWith<$Res> get imageSource;
+  @override
+  $ScheduleModelCopyWith<$Res>? get schedule;
 }
 
 /// @nodoc
@@ -186,14 +195,13 @@ class __$$TvShowModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? posterUrl = null,
+    Object? imageSource = null,
+    Object? schedule = freezed,
     Object? airs = freezed,
     Object? premiered = freezed,
     Object? ended = freezed,
     Object? genres = null,
     Object? summary = null,
-    Object? episodes = null,
-    Object? schedule = null,
   }) {
     return _then(_$TvShowModelImpl(
       id: null == id
@@ -204,10 +212,14 @@ class __$$TvShowModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      posterUrl: null == posterUrl
-          ? _value.posterUrl
-          : posterUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSourceModel,
+      schedule: freezed == schedule
+          ? _value.schedule
+          : schedule // ignore: cast_nullable_to_non_nullable
+              as ScheduleModel?,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -228,14 +240,6 @@ class __$$TvShowModelImplCopyWithImpl<$Res>
           ? _value.summary
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      episodes: null == episodes
-          ? _value._episodes
-          : episodes // ignore: cast_nullable_to_non_nullable
-              as List<EpisodeModel>,
-      schedule: null == schedule
-          ? _value.schedule
-          : schedule // ignore: cast_nullable_to_non_nullable
-              as ScheduleModel,
     ));
   }
 }
@@ -246,17 +250,14 @@ class _$TvShowModelImpl extends _TvShowModel {
   const _$TvShowModelImpl(
       {required this.id,
       required this.name,
-      @JsonKey(name: 'image.original', defaultValue: '')
-      required this.posterUrl,
+      @JsonKey(name: 'image') this.imageSource = const ImageSourceModel(),
+      this.schedule,
       @JsonKey(name: 'airstamp') this.airs,
       @JsonKey(name: 'premiered') this.premiered,
       @JsonKey(name: 'ended') this.ended,
-      required final List<String> genres,
-      required this.summary,
-      required final List<EpisodeModel> episodes,
-      required this.schedule})
+      final List<String> genres = const [],
+      required this.summary})
       : _genres = genres,
-        _episodes = episodes,
         super._();
 
   factory _$TvShowModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -267,8 +268,10 @@ class _$TvShowModelImpl extends _TvShowModel {
   @override
   final String name;
   @override
-  @JsonKey(name: 'image.original', defaultValue: '')
-  final String posterUrl;
+  @JsonKey(name: 'image')
+  final ImageSourceModel imageSource;
+  @override
+  final ScheduleModel? schedule;
   @override
   @JsonKey(name: 'airstamp')
   final DateTime? airs;
@@ -280,6 +283,7 @@ class _$TvShowModelImpl extends _TvShowModel {
   final DateTime? ended;
   final List<String> _genres;
   @override
+  @JsonKey()
   List<String> get genres {
     if (_genres is EqualUnmodifiableListView) return _genres;
     // ignore: implicit_dynamic_type
@@ -288,20 +292,10 @@ class _$TvShowModelImpl extends _TvShowModel {
 
   @override
   final String summary;
-  final List<EpisodeModel> _episodes;
-  @override
-  List<EpisodeModel> get episodes {
-    if (_episodes is EqualUnmodifiableListView) return _episodes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_episodes);
-  }
-
-  @override
-  final ScheduleModel schedule;
 
   @override
   String toString() {
-    return 'TvShowModel(id: $id, name: $name, posterUrl: $posterUrl, airs: $airs, premiered: $premiered, ended: $ended, genres: $genres, summary: $summary, episodes: $episodes, schedule: $schedule)';
+    return 'TvShowModel(id: $id, name: $name, imageSource: $imageSource, schedule: $schedule, airs: $airs, premiered: $premiered, ended: $ended, genres: $genres, summary: $summary)';
   }
 
   @override
@@ -311,17 +305,16 @@ class _$TvShowModelImpl extends _TvShowModel {
             other is _$TvShowModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.posterUrl, posterUrl) ||
-                other.posterUrl == posterUrl) &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource) &&
+            (identical(other.schedule, schedule) ||
+                other.schedule == schedule) &&
             (identical(other.airs, airs) || other.airs == airs) &&
             (identical(other.premiered, premiered) ||
                 other.premiered == premiered) &&
             (identical(other.ended, ended) || other.ended == ended) &&
             const DeepCollectionEquality().equals(other._genres, _genres) &&
-            (identical(other.summary, summary) || other.summary == summary) &&
-            const DeepCollectionEquality().equals(other._episodes, _episodes) &&
-            (identical(other.schedule, schedule) ||
-                other.schedule == schedule));
+            (identical(other.summary, summary) || other.summary == summary));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -330,14 +323,13 @@ class _$TvShowModelImpl extends _TvShowModel {
       runtimeType,
       id,
       name,
-      posterUrl,
+      imageSource,
+      schedule,
       airs,
       premiered,
       ended,
       const DeepCollectionEquality().hash(_genres),
-      summary,
-      const DeepCollectionEquality().hash(_episodes),
-      schedule);
+      summary);
 
   /// Create a copy of TvShowModel
   /// with the given fields replaced by the non-null parameter values.
@@ -359,15 +351,13 @@ abstract class _TvShowModel extends TvShowModel {
   const factory _TvShowModel(
       {required final int id,
       required final String name,
-      @JsonKey(name: 'image.original', defaultValue: '')
-      required final String posterUrl,
+      @JsonKey(name: 'image') final ImageSourceModel imageSource,
+      final ScheduleModel? schedule,
       @JsonKey(name: 'airstamp') final DateTime? airs,
       @JsonKey(name: 'premiered') final DateTime? premiered,
       @JsonKey(name: 'ended') final DateTime? ended,
-      required final List<String> genres,
-      required final String summary,
-      required final List<EpisodeModel> episodes,
-      required final ScheduleModel schedule}) = _$TvShowModelImpl;
+      final List<String> genres,
+      required final String summary}) = _$TvShowModelImpl;
   const _TvShowModel._() : super._();
 
   factory _TvShowModel.fromJson(Map<String, dynamic> json) =
@@ -378,8 +368,10 @@ abstract class _TvShowModel extends TvShowModel {
   @override
   String get name;
   @override
-  @JsonKey(name: 'image.original', defaultValue: '')
-  String get posterUrl;
+  @JsonKey(name: 'image')
+  ImageSourceModel get imageSource;
+  @override
+  ScheduleModel? get schedule;
   @override
   @JsonKey(name: 'airstamp')
   DateTime? get airs;
@@ -393,10 +385,6 @@ abstract class _TvShowModel extends TvShowModel {
   List<String> get genres;
   @override
   String get summary;
-  @override
-  List<EpisodeModel> get episodes;
-  @override
-  ScheduleModel get schedule;
 
   /// Create a copy of TvShowModel
   /// with the given fields replaced by the non-null parameter values.

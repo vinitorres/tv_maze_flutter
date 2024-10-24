@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'image_source.dart';
+
 part 'episode.freezed.dart';
 
 /// Episode entity - Episode from TV show
@@ -13,8 +15,7 @@ class Episode with _$Episode {
     required String name,
     required int number,
     required int season,
-    String? thumb,
-    String? poster,
+    required ImageSource imageSource,
     DateTime? airs,
     required String summary,
   }) = _Episode;

@@ -37,11 +37,11 @@ class EpisodeItem extends StatelessWidget {
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height * .17,
-                child: episode.thumb == null
+                child: episode.imageSource.original.isEmpty
                     ? EpisodeImagePlaceholder()
                     : Image(
                         fit: BoxFit.fill,
-                        image: NetworkImage(episode.thumb ?? ''),
+                        image: NetworkImage(episode.imageSource.original),
                       ),
               ),
               Column(

@@ -1,14 +1,15 @@
 import 'package:fpdart/fpdart.dart';
 
 import '../entities/entities.dart';
+import '../failures/failures.dart';
 
 abstract class ITvMazeRepository {
-  Future<Either<Exception, List<TvShow>>> getTvShows([int page = 0]);
-  Future<Either<Exception, List<TvShow>>> searchTvShows({
+  Future<Either<HttpFailure, List<TvShow>>> getTvShows([int page = 0]);
+  Future<Either<HttpFailure, List<TvShow>>> searchTvShows({
     required String name,
     int? page = 0,
   });
-  Future<Either<Exception, List<Episode>>> getEpisodes(int tvShowId);
-  Future<Either<Exception, List<Actor>>> getActors(int tvShowId);
-  Future<Either<Exception, List<TvShow>>> getActorSeries(int actorId);
+  Future<Either<HttpFailure, List<Episode>>> getEpisodes(int tvShowId);
+  Future<Either<HttpFailure, List<Person>>> getCast(int tvShowId);
+  Future<Either<HttpFailure, List<TvShow>>> getActorSeries(int actorId);
 }

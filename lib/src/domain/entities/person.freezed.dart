@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'actor.dart';
+part of 'person.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,54 +15,46 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$Actor {
+mixin _$Person {
   int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String? get thumb => throw _privateConstructorUsedError;
-  String? get poster => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // required String country,
+  ImageSource? get imageSource => throw _privateConstructorUsedError;
   DateTime? get birthday => throw _privateConstructorUsedError;
 
-  /// Create a copy of Actor
+  /// Create a copy of Person
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ActorCopyWith<Actor> get copyWith => throw _privateConstructorUsedError;
+  $PersonCopyWith<Person> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActorCopyWith<$Res> {
-  factory $ActorCopyWith(Actor value, $Res Function(Actor) then) =
-      _$ActorCopyWithImpl<$Res, Actor>;
+abstract class $PersonCopyWith<$Res> {
+  factory $PersonCopyWith(Person value, $Res Function(Person) then) =
+      _$PersonCopyWithImpl<$Res, Person>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String country,
-      String? thumb,
-      String? poster,
-      DateTime? birthday});
+      {int id, String name, ImageSource? imageSource, DateTime? birthday});
 }
 
 /// @nodoc
-class _$ActorCopyWithImpl<$Res, $Val extends Actor>
-    implements $ActorCopyWith<$Res> {
-  _$ActorCopyWithImpl(this._value, this._then);
+class _$PersonCopyWithImpl<$Res, $Val extends Person>
+    implements $PersonCopyWith<$Res> {
+  _$PersonCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Actor
+  /// Create a copy of Person
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? country = null,
-    Object? thumb = freezed,
-    Object? poster = freezed,
+    Object? imageSource = freezed,
     Object? birthday = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,18 +66,10 @@ class _$ActorCopyWithImpl<$Res, $Val extends Actor>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumb: freezed == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      poster: freezed == poster
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as String?,
+      imageSource: freezed == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource?,
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -95,42 +79,35 @@ class _$ActorCopyWithImpl<$Res, $Val extends Actor>
 }
 
 /// @nodoc
-abstract class _$$ActorImplCopyWith<$Res> implements $ActorCopyWith<$Res> {
-  factory _$$ActorImplCopyWith(
-          _$ActorImpl value, $Res Function(_$ActorImpl) then) =
-      __$$ActorImplCopyWithImpl<$Res>;
+abstract class _$$PersonImplCopyWith<$Res> implements $PersonCopyWith<$Res> {
+  factory _$$PersonImplCopyWith(
+          _$PersonImpl value, $Res Function(_$PersonImpl) then) =
+      __$$PersonImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      String country,
-      String? thumb,
-      String? poster,
-      DateTime? birthday});
+      {int id, String name, ImageSource? imageSource, DateTime? birthday});
 }
 
 /// @nodoc
-class __$$ActorImplCopyWithImpl<$Res>
-    extends _$ActorCopyWithImpl<$Res, _$ActorImpl>
-    implements _$$ActorImplCopyWith<$Res> {
-  __$$ActorImplCopyWithImpl(
-      _$ActorImpl _value, $Res Function(_$ActorImpl) _then)
+class __$$PersonImplCopyWithImpl<$Res>
+    extends _$PersonCopyWithImpl<$Res, _$PersonImpl>
+    implements _$$PersonImplCopyWith<$Res> {
+  __$$PersonImplCopyWithImpl(
+      _$PersonImpl _value, $Res Function(_$PersonImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Actor
+  /// Create a copy of Person
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? country = null,
-    Object? thumb = freezed,
-    Object? poster = freezed,
+    Object? imageSource = freezed,
     Object? birthday = freezed,
   }) {
-    return _then(_$ActorImpl(
+    return _then(_$PersonImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -139,18 +116,10 @@ class __$$ActorImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumb: freezed == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      poster: freezed == poster
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as String?,
+      imageSource: freezed == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource?,
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -161,88 +130,72 @@ class __$$ActorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ActorImpl extends _Actor {
-  const _$ActorImpl(
-      {required this.id,
-      required this.name,
-      required this.country,
-      this.thumb,
-      this.poster,
-      this.birthday})
+class _$PersonImpl extends _Person {
+  const _$PersonImpl(
+      {required this.id, required this.name, this.imageSource, this.birthday})
       : super._();
 
   @override
   final int id;
   @override
   final String name;
+// required String country,
   @override
-  final String country;
-  @override
-  final String? thumb;
-  @override
-  final String? poster;
+  final ImageSource? imageSource;
   @override
   final DateTime? birthday;
 
   @override
   String toString() {
-    return 'Actor(id: $id, name: $name, country: $country, thumb: $thumb, poster: $poster, birthday: $birthday)';
+    return 'Person(id: $id, name: $name, imageSource: $imageSource, birthday: $birthday)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ActorImpl &&
+            other is _$PersonImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.country, country) || other.country == country) &&
-            (identical(other.thumb, thumb) || other.thumb == thumb) &&
-            (identical(other.poster, poster) || other.poster == poster) &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, country, thumb, poster, birthday);
+  int get hashCode => Object.hash(runtimeType, id, name, imageSource, birthday);
 
-  /// Create a copy of Actor
+  /// Create a copy of Person
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ActorImplCopyWith<_$ActorImpl> get copyWith =>
-      __$$ActorImplCopyWithImpl<_$ActorImpl>(this, _$identity);
+  _$$PersonImplCopyWith<_$PersonImpl> get copyWith =>
+      __$$PersonImplCopyWithImpl<_$PersonImpl>(this, _$identity);
 }
 
-abstract class _Actor extends Actor {
-  const factory _Actor(
+abstract class _Person extends Person {
+  const factory _Person(
       {required final int id,
       required final String name,
-      required final String country,
-      final String? thumb,
-      final String? poster,
-      final DateTime? birthday}) = _$ActorImpl;
-  const _Actor._() : super._();
+      final ImageSource? imageSource,
+      final DateTime? birthday}) = _$PersonImpl;
+  const _Person._() : super._();
 
   @override
   int get id;
   @override
-  String get name;
+  String get name; // required String country,
   @override
-  String get country;
-  @override
-  String? get thumb;
-  @override
-  String? get poster;
+  ImageSource? get imageSource;
   @override
   DateTime? get birthday;
 
-  /// Create a copy of Actor
+  /// Create a copy of Person
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ActorImplCopyWith<_$ActorImpl> get copyWith =>
+  _$$PersonImplCopyWith<_$PersonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

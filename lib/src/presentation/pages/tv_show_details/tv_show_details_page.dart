@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/tv_show.dart';
-import '../../../shared/constants/app_values.dart';
 import '../../../infrastructure/injection/dependency_injection.dart';
+import '../../../shared/constants/app_values.dart';
 import '../../../shared/utils/string_utils.dart';
 import '../../i18n/translations.g.dart';
 import 'tv_show_details_cubit.dart';
@@ -51,7 +51,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(widget.tvShow.posterUrl),
+                      image: NetworkImage(widget.tvShow.imageSource.original),
                       fit: BoxFit.cover,
                     ),
                     shape: BoxShape.rectangle,
@@ -182,14 +182,16 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    '${widget.tvShow.schedule.days.join(', ')}  ${t.at}  ${widget.tvShow.schedule.time}',
-                    style: TextStyle(
-                      fontSize: AppValues.defaultSmallFontSize,
-                      color: Colors.grey,
+                  if (widget.tvShow.schedule != null) ...[
+                    SizedBox(height: 8),
+                    Text(
+                      '${widget.tvShow.schedule?.days.join(', ')}  ${t.at}  ${widget.tvShow.schedule?.time}',
+                      style: TextStyle(
+                        fontSize: AppValues.defaultSmallFontSize,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
+                  ],
                 ],
               ),
             ),

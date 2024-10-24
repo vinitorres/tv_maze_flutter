@@ -9,9 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
-  dio: ^5.7.0
   flutter_bloc: ^8.1.6
+  http: ^1.2.2
   get_it: ^7.3.0
   shared_preferences: ^2.3.2
   fpdart: ^1.1.0

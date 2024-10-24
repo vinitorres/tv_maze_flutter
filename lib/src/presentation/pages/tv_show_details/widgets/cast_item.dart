@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/actor.dart';
+import '../../../../domain/entities/person.dart';
 import '../../../../navigation/navigation_routes.dart';
 import '../../../../shared/constants/app_values.dart';
 
 class CastItem extends StatelessWidget {
-  const CastItem({super.key, required this.actor});
+  const CastItem({super.key, required this.person});
 
-  final Actor actor;
+  final Person person;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CastItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           NavigationRoutes.actorDetails,
-          arguments: actor,
+          arguments: person,
         );
       },
       child: Column(
@@ -24,13 +24,13 @@ class CastItem extends StatelessWidget {
           CircleAvatar(
             radius: 50,
             backgroundColor: Colors.white.withOpacity(0.5),
-            backgroundImage: NetworkImage(actor.thumb ?? ''),
+            backgroundImage: NetworkImage(person.imageSource?.original ?? ''),
           ),
           SizedBox(
             height: AppValues.defaultMediumPadding,
           ),
           Text(
-            actor.name,
+            person.name,
             style: TextStyle(
               color: Colors.white,
               fontSize: AppValues.defaultSmallFontSize,

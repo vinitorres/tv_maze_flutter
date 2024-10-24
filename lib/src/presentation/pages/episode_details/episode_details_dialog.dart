@@ -20,11 +20,11 @@ class EpisodeDetailsDialog extends StatelessWidget {
           ),
           child: Column(
             children: [
-              if (episode.poster != '')
+              if (episode.imageSource.original.isNotEmpty)
                 AspectRatio(
                   aspectRatio: 5 / 3,
                   child: Image.network(
-                    episode.poster ?? '',
+                    episode.imageSource.original,
                     fit: BoxFit.fill,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;

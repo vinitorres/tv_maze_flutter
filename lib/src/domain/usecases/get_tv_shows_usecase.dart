@@ -1,10 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 
 import '../entities/entities.dart';
+import '../failures/failures.dart';
 import '../repositories/repositories.dart';
 
 abstract class IGetTvShowsUsecase {
-  Future<Either<Exception, List<TvShow>>> call();
+  Future<Either<HttpFailure, List<TvShow>>> call();
 }
 
 class GetTvShowsUsecase implements IGetTvShowsUsecase {
@@ -13,7 +14,7 @@ class GetTvShowsUsecase implements IGetTvShowsUsecase {
   GetTvShowsUsecase(this._repository);
 
   @override
-  Future<Either<Exception, List<TvShow>>> call() {
+  Future<Either<HttpFailure, List<TvShow>>> call() {
     return _repository.getTvShows();
   }
 }

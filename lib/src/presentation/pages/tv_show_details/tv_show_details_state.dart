@@ -15,7 +15,7 @@ class TvShowDetailsState {
   final TvShowDetailsStatus status;
 
   final List<Episode>? episodes;
-  final List<Actor>? cast;
+  final List<Person>? cast;
   final String? castErrorMessage;
   final String? episodesErrorMessage;
 
@@ -30,7 +30,7 @@ class TvShowDetailsState {
   TvShowDetailsState copyWith({
     TvShowDetailsStatus? status,
     List<Episode>? episodes,
-    List<Actor>? cast,
+    List<Person>? cast,
     String? castErrorMessage,
     String? episodesErrorMessage,
   }) {

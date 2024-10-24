@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'episode.dart';
+import 'image_source.dart';
 import 'schedule.dart';
 
 part 'tv_show.freezed.dart';
@@ -14,13 +14,12 @@ class TvShow with _$TvShow {
   const factory TvShow({
     required int id,
     required String name,
-    required String posterUrl,
+    required ImageSource imageSource,
     DateTime? airs,
     DateTime? premiered,
     DateTime? ended,
-    required List<String> genres,
+    Schedule? schedule,
+    @Default([]) List<String> genres,
     required String summary,
-    required List<Episode> episodes,
-    required Schedule schedule,
   }) = _TvShow;
 }

@@ -12,8 +12,9 @@ _$EpisodeModelImpl _$$EpisodeModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       number: (json['number'] as num).toInt(),
       season: (json['season'] as num).toInt(),
-      thumb: json['image.medium'] as String? ?? '',
-      poster: json['image.original'] as String? ?? '',
+      imageSource: json['image'] == null
+          ? const ImageSourceModel()
+          : ImageSourceModel.fromJson(json['image'] as Map<String, dynamic>),
       airs: json['airstamp'] == null
           ? null
           : DateTime.parse(json['airstamp'] as String),
@@ -26,8 +27,7 @@ Map<String, dynamic> _$$EpisodeModelImplToJson(_$EpisodeModelImpl instance) =>
       'name': instance.name,
       'number': instance.number,
       'season': instance.season,
-      'image.medium': instance.thumb,
-      'image.original': instance.poster,
+      'image': instance.imageSource,
       'airstamp': instance.airs?.toIso8601String(),
       'summary': instance.summary,
     };

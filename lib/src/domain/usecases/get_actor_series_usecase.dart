@@ -1,10 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../entities/tv_show.dart';
-import '../repositories/tv_maze_repository.dart';
+import '../entities/entities.dart';
+import '../failures/failures.dart';
+import '../repositories/repositories.dart';
 
 abstract class IGetActorSeriesUsecase {
-  Future<Either<Exception, List<TvShow>>> call(int actorId);
+  Future<Either<HttpFailure, List<TvShow>>> call(int actorId);
 }
 
 class GetActorSeriesUsecase implements IGetActorSeriesUsecase {
@@ -13,7 +14,7 @@ class GetActorSeriesUsecase implements IGetActorSeriesUsecase {
   GetActorSeriesUsecase(this._repository);
 
   @override
-  Future<Either<Exception, List<TvShow>>> call(int actorId) {
+  Future<Either<HttpFailure, List<TvShow>>> call(int actorId) {
     return _repository.getActorSeries(actorId);
   }
 }

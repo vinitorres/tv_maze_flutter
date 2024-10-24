@@ -2,12 +2,12 @@ import 'package:get_it/get_it.dart';
 
 import '../../data/data.dart';
 import '../../domain/domain.dart';
-import '../infrastructure.dart';
 import '../../presentation/pages/actor_details/actor_details_view_model.dart';
 import '../../presentation/pages/favorites/favorites_cubit.dart';
 import '../../presentation/pages/tv_show_details/tv_show_details_cubit.dart';
 import '../../presentation/pages/tv_shows/tv_shows_cubit.dart';
 import '../../shared/constants/environment.dart';
+import '../network/http_adapter.dart';
 
 /// GetIt instance
 final getIt = GetIt.instance;
@@ -23,10 +23,16 @@ _binds() {
   getIt.registerSingleton<Environment>(Environment());
 
   //HttpClient
-  getIt.registerFactory<HttpClient>(() => HttpClientImpl(getIt()));
+  getIt.registerLazySingleton<IHttpClient>(
+    () => HttpAdapter(
+      baseUrl: getIt<Environment>().tvMazeBaseUrl,
+    ),
+  );
 
   // Data Sources
-  getIt.registerFactory<ITvMazeDataSource>(TvMazeDataSource.new);
+  getIt.registerFactory<ITvMazeDataSource>(
+    () => TvMazeDataSource(getIt()),
+  );
   getIt.registerFactory<IFavoritesLocalDataSource>(
     FavoritesLocalDataSource.new,
   );

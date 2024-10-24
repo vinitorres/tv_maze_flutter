@@ -1,28 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'actor_model.dart';
+part of 'person_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ActorImpl _$$ActorImplFromJson(Map<String, dynamic> json) => _$ActorImpl(
+_$PersonModelImpl _$$PersonModelImplFromJson(Map<String, dynamic> json) =>
+    _$PersonModelImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      thumb: json['image.medium'] as String? ?? '',
-      poster: json['image.original'] as String? ?? '',
-      country: json['country.name'] as String? ?? '',
+      imageSource:
+          ImageSourceModel.fromJson(json['image'] as Map<String, dynamic>),
       birthday: json['birthday'] == null
           ? null
           : DateTime.parse(json['birthday'] as String),
     );
 
-Map<String, dynamic> _$$ActorImplToJson(_$ActorImpl instance) =>
+Map<String, dynamic> _$$PersonModelImplToJson(_$PersonModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image.medium': instance.thumb,
-      'image.original': instance.poster,
-      'country.name': instance.country,
+      'image': instance.imageSource,
       'birthday': instance.birthday?.toIso8601String(),
     };

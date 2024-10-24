@@ -16,6 +16,8 @@ abstract class IFavoritesLocalDataSource {
 
 /// Implementation of [IFavoritesLocalDataSource]
 class FavoritesLocalDataSource implements IFavoritesLocalDataSource {
+  FavoritesLocalDataSource();
+
   Future<SharedPreferences> _getInstance() async {
     final SharedPreferences instance = await SharedPreferences.getInstance();
     return instance;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/tv_show.dart';
+import '../../infrastructure/injection/dependency_injection.dart';
 import '../../navigation/navigation_routes.dart';
 import '../../shared/constants/app_values.dart';
-import '../../infrastructure/injection/dependency_injection.dart';
 import '../pages/favorites/favorites_cubit.dart';
 import 'tv_show_empty_placeholder.dart';
 
@@ -37,12 +37,13 @@ class _TvShowItemState extends State<TvShowItem> {
       },
       child: Stack(
         children: [
-          if (widget.tvShow.posterUrl == '') TvShowEmptyPlaceholder(),
+          if (widget.tvShow.imageSource.original.isEmpty)
+            TvShowEmptyPlaceholder(),
           Container(
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(widget.tvShow.posterUrl),
+                image: NetworkImage(widget.tvShow.imageSource.original),
                 fit: BoxFit.fill,
               ),
               shape: BoxShape.rectangle,

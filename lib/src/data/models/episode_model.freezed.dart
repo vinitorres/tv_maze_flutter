@@ -24,10 +24,8 @@ mixin _$EpisodeModel {
   String get name => throw _privateConstructorUsedError;
   int get number => throw _privateConstructorUsedError;
   int get season => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image.medium', defaultValue: '')
-  String get thumb => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image.original', defaultValue: '')
-  String get poster => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  ImageSourceModel get imageSource => throw _privateConstructorUsedError;
   @JsonKey(name: 'airstamp')
   DateTime? get airs => throw _privateConstructorUsedError;
   String get summary => throw _privateConstructorUsedError;
@@ -53,10 +51,11 @@ abstract class $EpisodeModelCopyWith<$Res> {
       String name,
       int number,
       int season,
-      @JsonKey(name: 'image.medium', defaultValue: '') String thumb,
-      @JsonKey(name: 'image.original', defaultValue: '') String poster,
+      @JsonKey(name: 'image') ImageSourceModel imageSource,
       @JsonKey(name: 'airstamp') DateTime? airs,
       String summary});
+
+  $ImageSourceModelCopyWith<$Res> get imageSource;
 }
 
 /// @nodoc
@@ -78,8 +77,7 @@ class _$EpisodeModelCopyWithImpl<$Res, $Val extends EpisodeModel>
     Object? name = null,
     Object? number = null,
     Object? season = null,
-    Object? thumb = null,
-    Object? poster = null,
+    Object? imageSource = null,
     Object? airs = freezed,
     Object? summary = null,
   }) {
@@ -100,14 +98,10 @@ class _$EpisodeModelCopyWithImpl<$Res, $Val extends EpisodeModel>
           ? _value.season
           : season // ignore: cast_nullable_to_non_nullable
               as int,
-      thumb: null == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String,
-      poster: null == poster
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as String,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSourceModel,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -117,6 +111,16 @@ class _$EpisodeModelCopyWithImpl<$Res, $Val extends EpisodeModel>
           : summary // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  /// Create a copy of EpisodeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageSourceModelCopyWith<$Res> get imageSource {
+    return $ImageSourceModelCopyWith<$Res>(_value.imageSource, (value) {
+      return _then(_value.copyWith(imageSource: value) as $Val);
+    });
   }
 }
 
@@ -133,10 +137,12 @@ abstract class _$$EpisodeModelImplCopyWith<$Res>
       String name,
       int number,
       int season,
-      @JsonKey(name: 'image.medium', defaultValue: '') String thumb,
-      @JsonKey(name: 'image.original', defaultValue: '') String poster,
+      @JsonKey(name: 'image') ImageSourceModel imageSource,
       @JsonKey(name: 'airstamp') DateTime? airs,
       String summary});
+
+  @override
+  $ImageSourceModelCopyWith<$Res> get imageSource;
 }
 
 /// @nodoc
@@ -156,8 +162,7 @@ class __$$EpisodeModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? number = null,
     Object? season = null,
-    Object? thumb = null,
-    Object? poster = null,
+    Object? imageSource = null,
     Object? airs = freezed,
     Object? summary = null,
   }) {
@@ -178,14 +183,10 @@ class __$$EpisodeModelImplCopyWithImpl<$Res>
           ? _value.season
           : season // ignore: cast_nullable_to_non_nullable
               as int,
-      thumb: null == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String,
-      poster: null == poster
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as String,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSourceModel,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -206,8 +207,7 @@ class _$EpisodeModelImpl extends _EpisodeModel {
       required this.name,
       required this.number,
       required this.season,
-      @JsonKey(name: 'image.medium', defaultValue: '') required this.thumb,
-      @JsonKey(name: 'image.original', defaultValue: '') required this.poster,
+      @JsonKey(name: 'image') this.imageSource = const ImageSourceModel(),
       @JsonKey(name: 'airstamp') this.airs,
       required this.summary})
       : super._();
@@ -224,11 +224,8 @@ class _$EpisodeModelImpl extends _EpisodeModel {
   @override
   final int season;
   @override
-  @JsonKey(name: 'image.medium', defaultValue: '')
-  final String thumb;
-  @override
-  @JsonKey(name: 'image.original', defaultValue: '')
-  final String poster;
+  @JsonKey(name: 'image')
+  final ImageSourceModel imageSource;
   @override
   @JsonKey(name: 'airstamp')
   final DateTime? airs;
@@ -237,7 +234,7 @@ class _$EpisodeModelImpl extends _EpisodeModel {
 
   @override
   String toString() {
-    return 'EpisodeModel(id: $id, name: $name, number: $number, season: $season, thumb: $thumb, poster: $poster, airs: $airs, summary: $summary)';
+    return 'EpisodeModel(id: $id, name: $name, number: $number, season: $season, imageSource: $imageSource, airs: $airs, summary: $summary)';
   }
 
   @override
@@ -249,8 +246,8 @@ class _$EpisodeModelImpl extends _EpisodeModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.season, season) || other.season == season) &&
-            (identical(other.thumb, thumb) || other.thumb == thumb) &&
-            (identical(other.poster, poster) || other.poster == poster) &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource) &&
             (identical(other.airs, airs) || other.airs == airs) &&
             (identical(other.summary, summary) || other.summary == summary));
   }
@@ -258,7 +255,7 @@ class _$EpisodeModelImpl extends _EpisodeModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, number, season, thumb, poster, airs, summary);
+      runtimeType, id, name, number, season, imageSource, airs, summary);
 
   /// Create a copy of EpisodeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -282,10 +279,7 @@ abstract class _EpisodeModel extends EpisodeModel {
       required final String name,
       required final int number,
       required final int season,
-      @JsonKey(name: 'image.medium', defaultValue: '')
-      required final String thumb,
-      @JsonKey(name: 'image.original', defaultValue: '')
-      required final String poster,
+      @JsonKey(name: 'image') final ImageSourceModel imageSource,
       @JsonKey(name: 'airstamp') final DateTime? airs,
       required final String summary}) = _$EpisodeModelImpl;
   const _EpisodeModel._() : super._();
@@ -302,11 +296,8 @@ abstract class _EpisodeModel extends EpisodeModel {
   @override
   int get season;
   @override
-  @JsonKey(name: 'image.medium', defaultValue: '')
-  String get thumb;
-  @override
-  @JsonKey(name: 'image.original', defaultValue: '')
-  String get poster;
+  @JsonKey(name: 'image')
+  ImageSourceModel get imageSource;
   @override
   @JsonKey(name: 'airstamp')
   DateTime? get airs;

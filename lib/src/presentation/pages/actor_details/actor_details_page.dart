@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/entities/actor.dart';
+import '../../../domain/entities/person.dart';
+import '../../../infrastructure/injection/dependency_injection.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/constants/app_values.dart';
-import '../../../infrastructure/injection/dependency_injection.dart';
 import '../../i18n/translations.g.dart';
 import '../../widgets/tv_shows_list.dart';
 import 'actor_details_view_model.dart';
@@ -14,7 +14,7 @@ import 'actor_details_view_model.dart';
 class ActorDetailsPage extends StatefulWidget {
   const ActorDetailsPage({super.key, required this.actor});
 
-  final Actor actor;
+  final Person actor;
 
   @override
   State<ActorDetailsPage> createState() => _ActorDetailsPageState();
@@ -48,7 +48,7 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(widget.actor.poster ?? ''),
+                  image: NetworkImage(widget.actor.imageSource?.original ?? ''),
                   fit: BoxFit.cover,
                 ),
                 shape: BoxShape.rectangle,

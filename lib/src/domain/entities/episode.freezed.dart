@@ -20,8 +20,7 @@ mixin _$Episode {
   String get name => throw _privateConstructorUsedError;
   int get number => throw _privateConstructorUsedError;
   int get season => throw _privateConstructorUsedError;
-  String? get thumb => throw _privateConstructorUsedError;
-  String? get poster => throw _privateConstructorUsedError;
+  ImageSource get imageSource => throw _privateConstructorUsedError;
   DateTime? get airs => throw _privateConstructorUsedError;
   String get summary => throw _privateConstructorUsedError;
 
@@ -41,8 +40,7 @@ abstract class $EpisodeCopyWith<$Res> {
       String name,
       int number,
       int season,
-      String? thumb,
-      String? poster,
+      ImageSource imageSource,
       DateTime? airs,
       String summary});
 }
@@ -66,8 +64,7 @@ class _$EpisodeCopyWithImpl<$Res, $Val extends Episode>
     Object? name = null,
     Object? number = null,
     Object? season = null,
-    Object? thumb = freezed,
-    Object? poster = freezed,
+    Object? imageSource = null,
     Object? airs = freezed,
     Object? summary = null,
   }) {
@@ -88,14 +85,10 @@ class _$EpisodeCopyWithImpl<$Res, $Val extends Episode>
           ? _value.season
           : season // ignore: cast_nullable_to_non_nullable
               as int,
-      thumb: freezed == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      poster: freezed == poster
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as String?,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -120,8 +113,7 @@ abstract class _$$EpisodeImplCopyWith<$Res> implements $EpisodeCopyWith<$Res> {
       String name,
       int number,
       int season,
-      String? thumb,
-      String? poster,
+      ImageSource imageSource,
       DateTime? airs,
       String summary});
 }
@@ -143,8 +135,7 @@ class __$$EpisodeImplCopyWithImpl<$Res>
     Object? name = null,
     Object? number = null,
     Object? season = null,
-    Object? thumb = freezed,
-    Object? poster = freezed,
+    Object? imageSource = null,
     Object? airs = freezed,
     Object? summary = null,
   }) {
@@ -165,14 +156,10 @@ class __$$EpisodeImplCopyWithImpl<$Res>
           ? _value.season
           : season // ignore: cast_nullable_to_non_nullable
               as int,
-      thumb: freezed == thumb
-          ? _value.thumb
-          : thumb // ignore: cast_nullable_to_non_nullable
-              as String?,
-      poster: freezed == poster
-          ? _value.poster
-          : poster // ignore: cast_nullable_to_non_nullable
-              as String?,
+      imageSource: null == imageSource
+          ? _value.imageSource
+          : imageSource // ignore: cast_nullable_to_non_nullable
+              as ImageSource,
       airs: freezed == airs
           ? _value.airs
           : airs // ignore: cast_nullable_to_non_nullable
@@ -193,8 +180,7 @@ class _$EpisodeImpl extends _Episode {
       required this.name,
       required this.number,
       required this.season,
-      this.thumb,
-      this.poster,
+      required this.imageSource,
       this.airs,
       required this.summary})
       : super._();
@@ -208,9 +194,7 @@ class _$EpisodeImpl extends _Episode {
   @override
   final int season;
   @override
-  final String? thumb;
-  @override
-  final String? poster;
+  final ImageSource imageSource;
   @override
   final DateTime? airs;
   @override
@@ -218,7 +202,7 @@ class _$EpisodeImpl extends _Episode {
 
   @override
   String toString() {
-    return 'Episode(id: $id, name: $name, number: $number, season: $season, thumb: $thumb, poster: $poster, airs: $airs, summary: $summary)';
+    return 'Episode(id: $id, name: $name, number: $number, season: $season, imageSource: $imageSource, airs: $airs, summary: $summary)';
   }
 
   @override
@@ -230,15 +214,15 @@ class _$EpisodeImpl extends _Episode {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.number, number) || other.number == number) &&
             (identical(other.season, season) || other.season == season) &&
-            (identical(other.thumb, thumb) || other.thumb == thumb) &&
-            (identical(other.poster, poster) || other.poster == poster) &&
+            (identical(other.imageSource, imageSource) ||
+                other.imageSource == imageSource) &&
             (identical(other.airs, airs) || other.airs == airs) &&
             (identical(other.summary, summary) || other.summary == summary));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, number, season, thumb, poster, airs, summary);
+      runtimeType, id, name, number, season, imageSource, airs, summary);
 
   /// Create a copy of Episode
   /// with the given fields replaced by the non-null parameter values.
@@ -255,8 +239,7 @@ abstract class _Episode extends Episode {
       required final String name,
       required final int number,
       required final int season,
-      final String? thumb,
-      final String? poster,
+      required final ImageSource imageSource,
       final DateTime? airs,
       required final String summary}) = _$EpisodeImpl;
   const _Episode._() : super._();
@@ -270,9 +253,7 @@ abstract class _Episode extends Episode {
   @override
   int get season;
   @override
-  String? get thumb;
-  @override
-  String? get poster;
+  ImageSource get imageSource;
   @override
   DateTime? get airs;
   @override

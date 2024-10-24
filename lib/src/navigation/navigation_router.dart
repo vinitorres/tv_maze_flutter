@@ -31,7 +31,7 @@ class NavigationRouter {
       case NavigationRoutes.actorDetails:
         return MaterialPageRoute(
           builder: (_) =>
-              ActorDetailsPage(actor: (settings.arguments as Actor)),
+              ActorDetailsPage(actor: (settings.arguments as Person)),
         );
       default:
         return MaterialPageRoute(builder: (_) => HomePage());

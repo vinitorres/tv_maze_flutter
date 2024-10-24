@@ -1,10 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 
 import '../entities/entities.dart';
+import '../failures/failures.dart';
 
 abstract class IFavoritesRepository {
   // This method will be used to get the list of favorite TV shows
-  Future<Either<Exception, List<TvShow>>> getFavorites();
+  Future<Either<HttpFailure, List<TvShow>>> getFavorites();
 
   // This method will be used to toggle a TV show as favorite
   Future<void> toggleFavorite(TvShow tvShow);

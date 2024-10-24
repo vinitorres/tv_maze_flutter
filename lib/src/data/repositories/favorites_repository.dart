@@ -1,7 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../domain/entities/tv_show.dart';
-import '../../domain/repositories/favorites_repository.dart';
+import '../../domain/domain.dart';
 import '../datasources/local/favorites_local_datasource.dart';
 
 /// Implementation of [IFavoritesRepository]
@@ -12,12 +11,12 @@ class FavoritesRepository implements IFavoritesRepository {
   FavoritesRepository(this._favoritesLocalDataSource);
 
   @override
-  Future<Either<Exception, List<TvShow>>> getFavorites() async {
+  Future<Either<HttpFailure, List<TvShow>>> getFavorites() async {
     try {
       final favorites = await _favoritesLocalDataSource.getFavorites();
       return Right(favorites);
     } catch (e) {
-      return Left(e as Exception);
+      return Left(HttpFailure(e.toString()));
     }
   }
 

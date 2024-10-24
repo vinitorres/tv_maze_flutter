@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/entities/episode.dart';
+import 'image_source_model.dart';
 
 part 'episode_model.freezed.dart';
 part 'episode_model.g.dart';
@@ -16,8 +17,9 @@ class EpisodeModel with _$EpisodeModel {
     required String name,
     required int number,
     required int season,
-    @JsonKey(name: 'image.medium', defaultValue: '') required String thumb,
-    @JsonKey(name: 'image.original', defaultValue: '') required String poster,
+    @JsonKey(name: 'image')
+    @Default(ImageSourceModel())
+    ImageSourceModel imageSource,
     @JsonKey(name: 'airstamp') DateTime? airs,
     required String summary,
   }) = _EpisodeModel;
@@ -32,8 +34,7 @@ class EpisodeModel with _$EpisodeModel {
         name: name,
         number: number,
         season: season,
-        thumb: thumb,
-        poster: poster,
+        imageSource: imageSource.toEntity(),
         airs: airs,
         summary: summary,
       );
