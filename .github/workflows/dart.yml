@@ -30,8 +30,10 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
-      - name: Create code coverage file
+      - name: add dlcov for code coverage
         run: pub global activate dlcov
+
+      - name: Create code coverage file
         run: dlcov --lcov-gen="flutter test --coverage"
 
       # Your project will need to have tests in test/ and a dependency on
