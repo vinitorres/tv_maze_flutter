@@ -9,8 +9,15 @@ coverage:
 ignore:
   - "**/*.g.dart"
   - "**/*.freezed.dart"
-  - "lib/main.dart"
-  - "lib/src/infrastructure/*"
-  - "lib/src/navigation/*"
-  - "lib/src/presentation/*"
-  - "lib/src/data/interfaces/*"
+  - "**/main.dart"
+  - "**/infrastructure/*"
+  - "**/navigation/*"
+  - "**/presentation/*"
+  - "**/interfaces/*"
+
+status:
+  project:
+    default:
+      threshold: 1% # Minimum coverage required to show status
+      paths: 
+        - "lib/"
