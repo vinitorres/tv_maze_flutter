@@ -4,7 +4,7 @@ import '../../../domain/entities/tv_show.dart';
 import '../../../infrastructure/injection/dependency_injection.dart';
 import '../../../shared/constants/app_values.dart';
 import '../../../shared/utils/string_utils.dart';
-import '../../i18n/translations.g.dart';
+import '../../i18n/i18n.dart';
 import 'tv_show_details_cubit.dart';
 import 'widgets/cast_section.dart';
 import 'widgets/episodes_section.dart';
@@ -176,7 +176,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    t.tvShowDetailsDaysAndTime,
+                    tm.strings.tvShowDetailsDaysAndTime,
                     style: TextStyle(
                       fontSize: AppValues.defaultFontSize,
                       color: Colors.white,
@@ -185,7 +185,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                   if (widget.tvShow.schedule != null) ...[
                     SizedBox(height: 8),
                     Text(
-                      '${widget.tvShow.schedule?.days.join(', ')}  ${t.at}  ${widget.tvShow.schedule?.time}',
+                      '${widget.tvShow.schedule?.days.join(', ')}  ${tm.strings.at}  ${widget.tvShow.schedule?.time}',
                       style: TextStyle(
                         fontSize: AppValues.defaultSmallFontSize,
                         color: Colors.grey,

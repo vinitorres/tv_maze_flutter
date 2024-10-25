@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/entities/episode.dart';
 import '../../../shared/constants/app_values.dart';
 import '../../../shared/utils/string_utils.dart';
-import '../../i18n/translations.g.dart';
+import '../../i18n/i18n.dart';
 
 class EpisodeDetailsDialog extends StatelessWidget {
   const EpisodeDetailsDialog({super.key, required this.episode});
@@ -55,14 +55,14 @@ class EpisodeDetailsDialog extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      '${t.season} ${episode.season.toString()} ${t.episode} ${episode.number.toString()}',
+                      '${tm.strings.season} ${episode.season.toString()} ${tm.strings.episode} ${episode.number.toString()}',
                       style: const TextStyle(
                         fontSize: AppValues.defaultFontSize,
                       ),
                     ),
                     const SizedBox(height: AppValues.defaultLargerPadding),
                     Text(
-                      t.summary,
+                      tm.strings.summary,
                       style: const TextStyle(
                         fontSize: AppValues.defaultFontSize,
                         fontWeight: FontWeight.bold,

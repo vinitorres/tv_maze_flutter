@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../shared/constants/app_values.dart';
-import '../../i18n/translations.g.dart';
+import '../../i18n/i18n.dart';
 import '../../widgets/loading_with_text.dart';
 import '../../widgets/tv_shows_empty.dart';
 import '../../widgets/tv_shows_list.dart';
@@ -35,7 +35,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       children: [
         AppBar(
           title: Text(
-            t.favorites,
+            tm.strings.favorites,
             style: TextStyle(
               color: Colors.white,
               fontSize: AppValues.defaultLargerFontSize,
@@ -85,7 +85,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ),
                     )
                   : null,
-              hintText: t.favoritesSearchHint,
+              hintText: tm.strings.favoritesSearchHint,
               filled: true,
               fillColor: Colors.grey.withAlpha(80),
               hintStyle: TextStyle(color: Colors.grey),
@@ -100,7 +100,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           bloc: cubit,
           builder: ((_, state) {
             if (state.status == FavoritesStatus.empty) {
-              return TvShowEmpty(t.favoritesEmpty);
+              return TvShowEmpty(tm.strings.favoritesEmpty);
             }
 
             if (state.status == FavoritesStatus.loaded) {
@@ -115,7 +115,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             }
 
             return LoadingWithText(
-              placeholderText: t.favoritesLoading,
+              placeholderText: tm.strings.favoritesLoading,
             );
           }),
         ),

@@ -7,6 +7,7 @@ import '../../../domain/entities/person.dart';
 import '../../../infrastructure/injection/dependency_injection.dart';
 import '../../../shared/constants/app_colors.dart';
 import '../../../shared/constants/app_values.dart';
+import '../../i18n/i18n.dart';
 import '../../i18n/translations.g.dart';
 import '../../widgets/tv_shows_list.dart';
 import 'actor_details_view_model.dart';
@@ -74,7 +75,7 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
                   ),
                   SizedBox(height: AppValues.defaultLargerPadding),
                   Text(
-                    t.tvShows,
+                    tm.strings.tvShows,
                     style: TextStyle(
                       fontSize: AppValues.defaultMediumFontSize,
                       fontWeight: FontWeight.bold,

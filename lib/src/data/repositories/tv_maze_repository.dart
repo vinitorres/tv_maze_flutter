@@ -23,11 +23,11 @@ class TvMazeRepository implements ITvMazeRepository {
 
   @override
   Future<Either<HttpFailure, List<TvShow>>> searchTvShows({
-    required String name,
+    required String query,
     int? page = 0,
   }) async {
     try {
-      final response = await _tvMazeDataSource.searchTvShow(query: name);
+      final response = await _tvMazeDataSource.searchTvShows(query: query);
       return Right(response.map((e) => e.toEntity()).toList());
     } catch (e) {
       return Left(HttpFailure(e.toString()));

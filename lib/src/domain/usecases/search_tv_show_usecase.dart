@@ -15,6 +15,6 @@ class SearchTvShowUsecase implements ISearchTvShowUsecase {
 
   @override
   Future<Either<HttpFailure, List<TvShow>>> call(String name, [int page = 0]) {
-    return _tvMazeRepository.searchTvShows(name: name, page: page);
+    return _tvMazeRepository.searchTvShows(query: name, page: page);
   }
 }

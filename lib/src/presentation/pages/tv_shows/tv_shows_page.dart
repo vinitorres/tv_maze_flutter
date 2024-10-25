@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../shared/constants/app_values.dart';
-import '../../i18n/translations.g.dart';
+import '../../i18n/i18n.dart';
 import '../../widgets/loading_with_text.dart';
 import '../../widgets/tv_shows_empty.dart';
 import '../../widgets/tv_shows_list.dart';
@@ -41,7 +41,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          t.tvShows,
+          tm.strings.tvShows,
           style: TextStyle(
             color: Colors.white,
             fontSize: AppValues.defaultLargerFontSize,
@@ -93,7 +93,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
                         ),
                       )
                     : null,
-                hintText: t.tvShowsSearchHint,
+                hintText: tm.strings.tvShowsSearchHint,
                 filled: true,
                 fillColor: Colors.grey.withAlpha(80),
                 hintStyle: TextStyle(color: Colors.grey),
@@ -110,7 +110,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
         bloc: cubit,
         builder: ((context, state) {
           return switch (state) {
-            TvShowsStateEmpty() => TvShowEmpty(t.tvShowsEmpty),
+            TvShowsStateEmpty() => TvShowEmpty(tm.strings.tvShowsEmpty),
             TvShowsStateLoaded(:final tvShowList) ||
             TvShowsStateLoadingMore(:final tvShowList) =>
               Column(
@@ -135,7 +135,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
                 ],
               ),
             TvShowsStateLoading() => LoadingWithText(
-                placeholderText: t.tvShowsLoading,
+                placeholderText: tm.strings.tvShowsLoading,
               ),
             TvShowsStateError() => TvShowEmpty(state.message),
           };

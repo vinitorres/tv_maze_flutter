@@ -3,7 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:tv_shows_app/src/src.dart';
 
 import '../../../mocks.dart';
-import '../../../stubs/tv_maze_stubs.dart';
+import '../../../stubs/tv_maze_datasource_stubs.dart';
 
 void main() {
   late ITvMazeDataSource datasource;
@@ -89,7 +89,7 @@ void main() {
       });
     });
 
-    group('searchTvShow', () {
+    group('searchTvShows', () {
       test(
           'should return List<TvShowModel> when http client returns success response',
           () async {
@@ -104,7 +104,7 @@ void main() {
         );
 
         // Act
-        final result = await datasource.searchTvShow(query: query);
+        final result = await datasource.searchTvShows(query: query);
 
         // Assert
         expect(result, isA<List<TvShowModel>>());
@@ -122,7 +122,7 @@ void main() {
 
         // Act & Assert
         expect(
-          () => datasource.searchTvShow(query: 'query'),
+          () => datasource.searchTvShows(query: 'query'),
           throwsA(isA<IHttpException>()),
         );
       });

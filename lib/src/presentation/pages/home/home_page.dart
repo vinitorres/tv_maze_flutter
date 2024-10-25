@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/constants.dart';
-import '../../i18n/translations.g.dart';
+import '../../i18n/i18n.dart';
 import '../favorites/favorites_page.dart';
 import '../tv_shows/tv_shows_page.dart';
 
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: t.favorites,
+            label: tm.strings.favorites,
           ),
         ],
         currentIndex: _selectedIndex,

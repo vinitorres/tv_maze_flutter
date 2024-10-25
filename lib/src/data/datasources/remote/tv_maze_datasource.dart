@@ -28,7 +28,7 @@ abstract class ITvMazeDataSource {
   Future<List<EpisodeModel>> getEpisodes({required int id});
 
   /// Search tv show - search tv shows by query
-  Future<List<TvShowModel>> searchTvShow({required String query});
+  Future<List<TvShowModel>> searchTvShows({required String query});
 
   /// Get cast - load cast from the API
   Future<List<PersonModel>> getCast({required int tvShowId});
@@ -67,7 +67,7 @@ class TvMazeDataSource implements ITvMazeDataSource {
   }
 
   @override
-  Future<List<TvShowModel>> searchTvShow({required String query}) async {
+  Future<List<TvShowModel>> searchTvShows({required String query}) async {
     final queryParams = {'q': query};
     final response =
         await _httpClient.get(TvMazeEndpoints.search, query: queryParams);
