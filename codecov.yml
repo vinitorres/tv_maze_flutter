@@ -1,0 +1,12 @@
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+  ignore:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "lib/main.dart"
+    - "lib/src/infrastructure/*"
+    - "lib/src/navigation/*"
+    - "lib/src/presentation/*"
+    - "lib/src/data/interfaces/*"
