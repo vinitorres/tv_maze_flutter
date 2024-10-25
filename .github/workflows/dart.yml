@@ -25,10 +25,10 @@ jobs:
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Analyze project source
-        run: dart analyze
+        run: flutter analyze
 
       - name: add dlcov for code coverage
         run: pub global activate dlcov
@@ -40,4 +40,4 @@ jobs:
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
       - name: Run tests
-        run: dart test
+        run: flutter test
