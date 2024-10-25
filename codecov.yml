@@ -5,6 +5,12 @@ coverage:
   precision: 2
   round: down
   range: "50...90"
+  status:
+    project:
+      default:
+        threshold: 1%
+        paths: 
+          - "lib/"
 
 ignore:
   - "**/*.g.dart"
@@ -14,10 +20,3 @@ ignore:
   - "**/navigation/*"
   - "**/presentation/*"
   - "**/interfaces/*"
-
-status:
-  project:
-    default:
-      threshold: 1% # Minimum coverage required to show status
-      paths: 
-        - "lib/"
