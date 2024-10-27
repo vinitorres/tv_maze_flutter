@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/person.dart';
-import '../../../../shared/constants/app_values.dart';
+import '../../../theme/app_sizes.dart';
 import 'cast_item.dart';
 
 class CastList extends StatelessWidget {
@@ -20,7 +20,7 @@ class CastList extends StatelessWidget {
           person: cast[index],
         ),
         separatorBuilder: (context, index) =>
-            SizedBox(width: AppValues.defaultLargerPadding),
+            SizedBox(width: AppSizes.defaultLargerPadding),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/constants/app_values.dart';
+import '../../../theme/app_sizes.dart';
 import '../tv_show_details_cubit.dart';
 import 'cast_list.dart';
 
@@ -13,7 +13,7 @@ class CastSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: AppValues.defaultLargerPadding),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.defaultLargerPadding),
       height: 170,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +21,7 @@ class CastSection extends StatelessWidget {
           Text(
             'Cast',
             style: TextStyle(
-              fontSize: AppValues.defaultLargerFontSize,
+              fontSize: AppSizes.defaultLargerFontSize,
               color: Colors.white,
             ),
           ),

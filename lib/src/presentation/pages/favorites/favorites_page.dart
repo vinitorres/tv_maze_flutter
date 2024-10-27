@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../shared/constants/app_values.dart';
 import '../../i18n/i18n.dart';
+import '../../theme/app_sizes.dart';
 import '../../widgets/loading_with_text.dart';
 import '../../widgets/tv_shows_empty.dart';
 import '../../widgets/tv_shows_list.dart';
@@ -38,14 +38,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
             tm.strings.favorites,
             style: TextStyle(
               color: Colors.white,
-              fontSize: AppValues.defaultLargerFontSize,
+              fontSize: AppSizes.defaultLargerFontSize,
             ),
           ),
         ),
         Container(
           height: 60,
           padding: const EdgeInsets.symmetric(
-            horizontal: AppValues.defaultLargerPadding,
+            horizontal: AppSizes.defaultLargerPadding,
           ),
           child: TextField(
             controller: _searchController,

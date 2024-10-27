@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/tv_show.dart';
 import '../../infrastructure/injection/dependency_injection.dart';
 import '../../navigation/navigation_routes.dart';
-import '../../shared/constants/app_values.dart';
 import '../pages/favorites/favorites_cubit.dart';
+import '../theme/app_sizes.dart';
 import 'tv_show_empty_placeholder.dart';
 
 /// Widget to display a TV show item
@@ -60,7 +60,7 @@ class _TvShowItemState extends State<TvShowItem> {
                     widget.tvShow.name,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: AppValues.defaultFontSize,
+                      fontSize: AppSizes.defaultFontSize,
                     ),
                   ),
                 ),

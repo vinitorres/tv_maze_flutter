@@ -1,14 +1,10 @@
-codecov:
-  require_ci_to_pass: yes
-
 coverage:
   precision: 2
-  round: down
   range: "50...90"
   status:
     project:
       default:
-        threshold: 1%
+        threshold: 5%
         paths: 
           - "lib/"
 

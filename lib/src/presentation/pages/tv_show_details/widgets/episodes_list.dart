@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/episode.dart';
-import '../../../../shared/constants/app_values.dart';
+import '../../../theme/app_sizes.dart';
 import 'episode_item.dart';
 
 class EpisodesList extends StatelessWidget {
@@ -38,7 +38,7 @@ class EpisodesList extends StatelessWidget {
                   'Season ${e.first.season}',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: AppValues.defaultMediumFontSize,
+                    fontSize: AppSizes.defaultMediumFontSize,
                   ),
                 ),
                 SizedBox(height: 8),

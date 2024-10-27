@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/constants/constants.dart';
 import '../../i18n/i18n.dart';
+import '../../theme/theme.dart';
 import '../favorites/favorites_page.dart';
 import '../tv_shows/tv_shows_page.dart';
 

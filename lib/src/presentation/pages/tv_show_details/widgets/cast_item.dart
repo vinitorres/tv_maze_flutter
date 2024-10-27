@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/person.dart';
 import '../../../../navigation/navigation_routes.dart';
-import '../../../../shared/constants/app_values.dart';
+import '../../../theme/app_sizes.dart';
 
 class CastItem extends StatelessWidget {
   const CastItem({super.key, required this.person});
@@ -27,13 +27,13 @@ class CastItem extends StatelessWidget {
             backgroundImage: NetworkImage(person.imageSource?.original ?? ''),
           ),
           SizedBox(
-            height: AppValues.defaultMediumPadding,
+            height: AppSizes.defaultMediumPadding,
           ),
           Text(
             person.name,
             style: TextStyle(
               color: Colors.white,
-              fontSize: AppValues.defaultSmallFontSize,
+              fontSize: AppSizes.defaultSmallFontSize,
             ),
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/episode.dart';
 import '../../../../navigation/navigation_routes.dart';
-import '../../../../shared/constants/app_values.dart';
+import '../../../theme/app_sizes.dart';
 import 'episode_image_placeholder.dart';
 
 /// Widget to display an episode item
@@ -49,7 +49,7 @@ class EpisodeItem extends StatelessWidget {
                   Spacer(),
                   Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: AppValues.defaultMediumPadding,
+                      horizontal: AppSizes.defaultMediumPadding,
                     ),
                     child: Text(
                       '${episode.number} : ${episode.name}',

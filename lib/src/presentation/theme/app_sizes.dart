@@ -1,5 +1,5 @@
 /// Default values for size and padding
-class AppValues {
+class AppSizes {
   /// Default padding value for large padding
   static const defaultLargerPadding = 16.0;
 

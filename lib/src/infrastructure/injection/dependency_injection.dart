@@ -1,12 +1,14 @@
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../data/data.dart';
 import '../../domain/domain.dart';
+import '../../domain/entities/environment.dart';
 import '../../presentation/pages/actor_details/actor_details_view_model.dart';
 import '../../presentation/pages/favorites/favorites_cubit.dart';
 import '../../presentation/pages/tv_show_details/tv_show_details_cubit.dart';
 import '../../presentation/pages/tv_shows/tv_shows_cubit.dart';
-import '../../shared/constants/environment.dart';
 import '../network/http_adapter.dart';
 
 /// GetIt instance
@@ -14,14 +16,18 @@ final getIt = GetIt.instance;
 
 /// Dependency injection setup
 initSetup() async {
+  await _asyncBinds();
   _binds();
-  await _loadEnvironment();
+}
+
+_asyncBinds() async {
+  // Environment
+  getIt.registerSingletonAsync<Environment>(
+    () async => _loadEnvironment(),
+  );
 }
 
 _binds() {
-  // Environment
-  getIt.registerSingleton<Environment>(Environment());
-
   //HttpClient
   getIt.registerLazySingleton<IHttpClient>(
     () => HttpAdapter(
@@ -77,6 +83,9 @@ _binds() {
   getIt.registerLazySingleton(() => FavoritesCubit(getIt()));
 }
 
-_loadEnvironment() async {
-  await getIt<Environment>().loadEnvironment();
+/// Load environment variables
+Future<Environment> _loadEnvironment() async {
+  final String yamlString = await rootBundle.loadString('assets/env/env.yaml');
+  final Map yamlMap = loadYaml(yamlString);
+  return Environment(tvMazeBaseUrl: yamlMap['tvMazeBaseUrl']);
 }

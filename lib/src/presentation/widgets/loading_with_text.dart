@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/constants/app_values.dart';
+import '../theme/app_sizes.dart';
 
 /// Widget to display a loading spinner with text
 class LoadingWithText extends StatelessWidget {
@@ -28,7 +28,7 @@ class LoadingWithText extends StatelessWidget {
               placeholderText,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: AppValues.defaultMediumFontSize,
+                fontSize: AppSizes.defaultMediumFontSize,
               ),
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/constants/app_values.dart';
+import '../../../theme/app_sizes.dart';
 import '../tv_show_details_cubit.dart';
 import 'episodes_list.dart';
 
@@ -16,14 +16,14 @@ class EpisodesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(AppValues.defaultLargerPadding),
+      padding: EdgeInsets.all(AppSizes.defaultLargerPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Episodes',
             style: TextStyle(
-              fontSize: AppValues.defaultLargerFontSize,
+              fontSize: AppSizes.defaultLargerFontSize,
               color: Colors.white,
             ),
           ),

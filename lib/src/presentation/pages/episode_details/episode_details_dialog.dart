@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/episode.dart';
-import '../../../shared/constants/app_values.dart';
-import '../../../shared/utils/string_utils.dart';
+import '../../../domain/domain.dart';
+import '../../../shared/shared.dart';
 import '../../i18n/i18n.dart';
+import '../../theme/theme.dart';
 
 class EpisodeDetailsDialog extends StatelessWidget {
   const EpisodeDetailsDialog({super.key, required this.episode});
@@ -41,7 +41,7 @@ class EpisodeDetailsDialog extends StatelessWidget {
                   ),
                 ),
               Container(
-                padding: const EdgeInsets.all(AppValues.defaultLargerPadding),
+                padding: const EdgeInsets.all(AppSizes.defaultLargerPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -49,7 +49,7 @@ class EpisodeDetailsDialog extends StatelessWidget {
                     Text(
                       episode.name,
                       style: const TextStyle(
-                        fontSize: AppValues.defaultMediumFontSize,
+                        fontSize: AppSizes.defaultMediumFontSize,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -57,22 +57,22 @@ class EpisodeDetailsDialog extends StatelessWidget {
                     Text(
                       '${tm.strings.season} ${episode.season.toString()} ${tm.strings.episode} ${episode.number.toString()}',
                       style: const TextStyle(
-                        fontSize: AppValues.defaultFontSize,
+                        fontSize: AppSizes.defaultFontSize,
                       ),
                     ),
-                    const SizedBox(height: AppValues.defaultLargerPadding),
+                    const SizedBox(height: AppSizes.defaultLargerPadding),
                     Text(
                       tm.strings.summary,
                       style: const TextStyle(
-                        fontSize: AppValues.defaultFontSize,
+                        fontSize: AppSizes.defaultFontSize,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      StringUtils.removeHtmlTags(episode.summary),
+                      episode.summary.removeHtmlTags(),
                       style: const TextStyle(
-                        fontSize: AppValues.defaultFontSize,
+                        fontSize: AppSizes.defaultFontSize,
                       ),
                     ),
                   ],

@@ -5,9 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/person.dart';
 import '../../../infrastructure/injection/dependency_injection.dart';
-import '../../../shared/constants/app_colors.dart';
-import '../../../shared/constants/app_values.dart';
 import '../../i18n/i18n.dart';
+import '../../theme/theme.dart';
 import '../../widgets/tv_shows_list.dart';
 import 'actor_details_view_model.dart';
 
@@ -59,7 +58,7 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
               width: double.infinity,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
-                vertical: AppValues.defaultMediumPadding,
+                vertical: AppSizes.defaultMediumPadding,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,21 +66,21 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
                   Text(
                     widget.actor.name,
                     style: TextStyle(
-                      fontSize: AppValues.defaultLargerFontSize,
+                      fontSize: AppSizes.defaultLargerFontSize,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimaryColor,
                     ),
                   ),
-                  SizedBox(height: AppValues.defaultLargerPadding),
+                  SizedBox(height: AppSizes.defaultLargerPadding),
                   Text(
                     tm.strings.tvShows,
                     style: TextStyle(
-                      fontSize: AppValues.defaultMediumFontSize,
+                      fontSize: AppSizes.defaultMediumFontSize,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimaryColor,
                     ),
                   ),
-                  SizedBox(height: AppValues.defaultLargerPadding),
+                  SizedBox(height: AppSizes.defaultLargerPadding),
                 ],
               ),
             ),
