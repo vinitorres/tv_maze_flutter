@@ -1,24 +1,18 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'actor_details_view_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum ActorDetailsStatus { initial, loading, loaded, error }
+import '../../../domain/domain.dart';
 
-class ActorDetailsState {
-  final ActorDetailsStatus status;
-  final List<TvShow>? actorSeries;
+part 'actor_details_state.freezed.dart';
 
-  ActorDetailsState({
-    required this.status,
-    this.actorSeries,
-  });
+@freezed
+sealed class ActorDetailsState with _$ActorDetailsState {
+  factory ActorDetailsState.loading() = ActorDetailsStateLoading;
 
-  ActorDetailsState copyWith({
-    ActorDetailsStatus? status,
-    List<TvShow>? actorSeries,
-  }) {
-    return ActorDetailsState(
-      status: status ?? this.status,
-      actorSeries: actorSeries ?? this.actorSeries,
-    );
-  }
+  factory ActorDetailsState.loaded({
+    required List<TvShow> actorSeries,
+  }) = ActorDetailsStateLoaded;
+
+  factory ActorDetailsState.error({
+    required String message,
+  }) = ActorDetailsStateError;
 }

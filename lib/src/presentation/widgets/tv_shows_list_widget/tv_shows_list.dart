@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/tv_show.dart';
-import '../theme/app_sizes.dart';
-import 'tv_show_item.dart';
+import '../../../domain/entities/tv_show.dart';
+import '../../theme/app_sizes.dart';
+import 'widgets/tv_show_item.dart';
 
 /// Widget to display a list of TV shows
 class TvShowList extends StatefulWidget {
@@ -45,9 +45,9 @@ class _TvShowListState extends State<TvShowList> {
   Widget build(BuildContext context) {
     return GridView.count(
       controller: widget.scrollable == null ? null : _scrollController,
-      padding: EdgeInsets.all(AppSizes.defaultLargerPadding),
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
+      padding: EdgeInsets.all(AppSizes.defaultMediumPadding),
+      crossAxisSpacing: AppSizes.defaultMediumPadding,
+      mainAxisSpacing: AppSizes.defaultMediumPadding,
       childAspectRatio: 0.7,
       primary: widget.scrollable == null ? true : null,
       shrinkWrap: true,

@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/person.dart';
-import '../../../infrastructure/injection/dependency_injection.dart';
+import '../../../shared/injection/dependency_manager.dart';
 import '../../i18n/i18n.dart';
 import '../../theme/theme.dart';
-import '../../widgets/tv_shows_list.dart';
+import '../../widgets/tv_shows_list_widget/tv_shows_list.dart';
+import 'actor_details_state.dart';
 import 'actor_details_view_model.dart';
 
 class ActorDetailsPage extends StatefulWidget {
@@ -20,12 +21,12 @@ class ActorDetailsPage extends StatefulWidget {
 }
 
 class _ActorDetailsPageState extends State<ActorDetailsPage> {
-  final cubit = getIt.get<ActorDetailsViewModel>();
+  final viewModel = DM.get<ActorDetailsViewModel>();
 
   @override
   void initState() {
-    cubit.loadActorSeries(widget.actor.id);
     super.initState();
+    viewModel.loadActorSeries(widget.actor.id);
   }
 
   @override
@@ -57,7 +58,7 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(
-                horizontal: 16,
+                horizontal: AppSizes.defaultMediumPadding,
                 vertical: AppSizes.defaultMediumPadding,
               ),
               child: Column(
@@ -80,27 +81,25 @@ class _ActorDetailsPageState extends State<ActorDetailsPage> {
                       color: AppColors.textPrimaryColor,
                     ),
                   ),
-                  SizedBox(height: AppSizes.defaultLargerPadding),
                 ],
               ),
             ),
-            BlocBuilder<ActorDetailsViewModel, ActorDetailsState>(
-              bloc: cubit,
-              builder: (context, state) {
-                if (state.status == ActorDetailsStatus.loading) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (state.status == ActorDetailsStatus.loaded) {
-                  return TvShowList(
-                    tvShowList: state.actorSeries ?? [],
-                    scrollable: false,
-                  );
-                }
-                return Container();
-              },
+            SafeArea(
+              top: false,
+              child: BlocBuilder<ActorDetailsViewModel, ActorDetailsState>(
+                bloc: viewModel,
+                builder: (context, state) {
+                  return switch (state) {
+                    ActorDetailsStateLoaded(:final actorSeries) =>
+                      TvShowList(tvShowList: actorSeries, scrollable: false),
+                    ActorDetailsStateError(:final message) =>
+                      Center(child: Text(message)),
+                    _ => Center(child: CircularProgressIndicator()),
+                  };
+                },
+              ),
             ),
+            SizedBox(height: AppSizes.defaultLargerPadding),
           ],
         ),
       ),

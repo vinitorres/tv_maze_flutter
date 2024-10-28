@@ -43,10 +43,13 @@ class TranslationsStringsEn {
 	// Translations
 	String get tvShows => 'Tv Shows';
 	String get season => 'Season';
+	String seasonTitle({required Object number}) => 'Season ${number}';
 	String get episode  => 'Episode';
 	String get summary => 'Summary';
 	String get favorites => 'Favorites';
 	String get at => 'at';
+	String get cast => 'Cast';
+	String get episodes => 'Episodes';
 	String get tvShowsSearchHint => 'Search Tv Shows';
 	String get tvShowsEmpty => 'No tv shows found';
 	String get tvShowsLoading => 'Loading tv shows...';
@@ -63,10 +66,13 @@ extension on Translations {
 		switch (path) {
 			case 'strings.tvShows': return 'Tv Shows';
 			case 'strings.season': return 'Season';
+			case 'strings.seasonTitle': return ({required Object number}) => 'Season ${number}';
 			case 'strings.episode ': return 'Episode';
 			case 'strings.summary': return 'Summary';
 			case 'strings.favorites': return 'Favorites';
 			case 'strings.at': return 'at';
+			case 'strings.cast': return 'Cast';
+			case 'strings.episodes': return 'Episodes';
 			case 'strings.tvShowsSearchHint': return 'Search Tv Shows';
 			case 'strings.tvShowsEmpty': return 'No tv shows found';
 			case 'strings.tvShowsLoading': return 'Loading tv shows...';

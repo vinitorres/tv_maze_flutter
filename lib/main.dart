@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'src/infrastructure/injection/dependency_injection.dart';
 import 'src/navigation/navigation_router.dart';
 import 'src/navigation/navigation_routes.dart';
 import 'src/presentation/theme/theme.dart';
+import 'src/shared/injection/dependency_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

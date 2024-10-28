@@ -1,31 +1,26 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/entities/tv_show.dart';
-import '../../../domain/usecases/get_actor_series_usecase.dart';
-
-part 'actor_details_state.dart';
+import '../../../domain/domain.dart';
+import 'actor_details_state.dart';
 
 class ActorDetailsViewModel extends Cubit<ActorDetailsState> {
   ActorDetailsViewModel(this._getActorSeriesUsecase)
-      : super(ActorDetailsState(status: ActorDetailsStatus.initial));
+      : super(ActorDetailsState.loading());
 
   final IGetActorSeriesUsecase _getActorSeriesUsecase;
 
   loadActorSeries(int actorId) async {
-    emit(state.copyWith(status: ActorDetailsStatus.loading));
-
+    emit(ActorDetailsState.loading());
     final result = await _getActorSeriesUsecase.call(actorId);
-
     emit(
       result.fold(
         (error) {
-          return state.copyWith(status: ActorDetailsStatus.error);
+          return ActorDetailsState.error(
+            message: error.message,
+          );
         },
         (success) {
-          return state.copyWith(
-            status: ActorDetailsStatus.loaded,
-            actorSeries: success,
-          );
+          return ActorDetailsState.loaded(actorSeries: success);
         },
       ),
     );

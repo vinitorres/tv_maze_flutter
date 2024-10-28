@@ -1,10 +1,13 @@
 {
     "tvShows": "Tv Shows",
     "season": "Season",
+    "seasonTitle": "Season {number}",
     "episode ": "Episode",
     "summary": "Summary",
     "favorites": "Favorites",
     "at": "at",
+    "cast": "Cast",
+    "episodes": "Episodes",
     "tvShowsSearchHint": "Search Tv Shows",
     "tvShowsEmpty": "No tv shows found",
     "tvShowsLoading": "Loading tv shows...",

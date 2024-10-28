@@ -1,25 +1,21 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'favorites_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum FavoritesStatus { initial, loading, loaded, empty }
+import '../../../domain/domain.dart';
 
-class FavoritesState {
-  final FavoritesStatus status;
+part 'favorites_state.freezed.dart';
 
-  final List<TvShow>? favoritesList;
-  final List<TvShow>? filtredList;
+@freezed
+sealed class FavoritesState with _$FavoritesState {
+  factory FavoritesState.loading() = FavoritesStateLoading;
 
-  FavoritesState({required this.status, this.favoritesList, this.filtredList});
+  factory FavoritesState.loaded({
+    required List<TvShow> favoritesList,
+    required List<TvShow> filtredList,
+  }) = FavoritesStateLoaded;
 
-  FavoritesState copyWith({
-    FavoritesStatus? status,
-    List<TvShow>? favoritesList,
-    List<TvShow>? filtredList,
-  }) {
-    return FavoritesState(
-      status: status ?? this.status,
-      favoritesList: favoritesList ?? this.favoritesList,
-      filtredList: filtredList ?? this.filtredList,
-    );
-  }
+  factory FavoritesState.empty() = FavoritesStateEmpty;
+
+  factory FavoritesState.error({
+    required String message,
+  }) = FavoritesStateError;
 }

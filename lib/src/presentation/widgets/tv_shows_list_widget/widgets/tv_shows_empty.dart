@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/app_sizes.dart';
+import '../../../theme/theme.dart';
 
 /// Widget to display a message when there are no TV shows
 class TvShowEmpty extends StatelessWidget {
@@ -17,7 +17,7 @@ class TvShowEmpty extends StatelessWidget {
         child: Text(
           message,
           style: TextStyle(
-            color: Colors.white,
+            color: AppColors.textPrimaryColor,
             fontSize: AppSizes.defaultMediumFontSize,
           ),
         ),

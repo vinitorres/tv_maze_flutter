@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/person.dart';
-import '../../../../navigation/navigation_routes.dart';
-import '../../../theme/app_sizes.dart';
+import '../../../../../../domain/entities/person.dart';
+import '../../../../../../navigation/navigation_routes.dart';
+import '../../../../../theme/app_sizes.dart';
 
 class CastItem extends StatelessWidget {
   const CastItem({super.key, required this.person});

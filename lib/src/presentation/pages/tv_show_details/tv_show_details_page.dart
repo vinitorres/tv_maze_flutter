@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/tv_show.dart';
-import '../../../infrastructure/injection/dependency_injection.dart';
+import '../../../shared/injection/dependency_manager.dart';
 import '../../../shared/shared.dart';
 import '../../i18n/i18n.dart';
 import '../../theme/app_sizes.dart';
-import 'tv_show_details_cubit.dart';
-import 'widgets/cast_section.dart';
-import 'widgets/episodes_section.dart';
+import 'tv_show_details_state.dart';
+import 'tv_show_details_view_model.dart';
+import 'widgets/widgets.dart';
 
 class TvShowDetailsPage extends StatefulWidget {
   const TvShowDetailsPage({super.key, required this.tvShow});
@@ -19,22 +20,12 @@ class TvShowDetailsPage extends StatefulWidget {
 }
 
 class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
-  final cubit = getIt.get<TvShowDetailsCubit>();
-
-  var isFavorite = true;
+  final viewModel = DM.get<TvShowDetailsViewModel>();
 
   @override
   void initState() {
     super.initState();
-    cubit.loadTvShowDetails(widget.tvShow);
-    verifyFavorite();
-  }
-
-  verifyFavorite() async {
-    final favorite = await cubit.isFavorite(widget.tvShow);
-    setState(() {
-      isFavorite = favorite;
-    });
+    viewModel.verifyFavorite(widget.tvShow);
   }
 
   @override
@@ -75,7 +66,9 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              Navigator.pop(context, cubit.favoritesHasChange);
+                              Navigator.pop(context, true);
+                              // TODO: Update page when return and favorite change
+                              // Navigator.pop(context, cubit.favoritesHasChange);
                             },
                           ),
                         ),
@@ -84,21 +77,27 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                         padding: EdgeInsets.symmetric(
                           horizontal: AppSizes.defaultMediumPadding,
                         ),
-                        child: CircleAvatar(
-                          radius: 24,
-                          backgroundColor: Colors.black.withOpacity(0.5),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.star,
-                              color: isFavorite ? Colors.yellow : Colors.white,
-                            ),
-                            onPressed: () {
-                              cubit.addOrRemoveFromFavorites(widget.tvShow);
-                              setState(() {
-                                isFavorite = !isFavorite;
-                              });
-                            },
-                          ),
+                        child: BlocBuilder<TvShowDetailsViewModel,
+                            TvShowDetailsState>(
+                          bloc: viewModel,
+                          builder: (context, state) {
+                            return CircleAvatar(
+                              radius: 24,
+                              backgroundColor: Colors.black.withOpacity(0.5),
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.star,
+                                  color: state.isFavorite
+                                      ? Colors.yellow
+                                      : Colors.white,
+                                ),
+                                onPressed: () {
+                                  viewModel
+                                      .addOrRemoveFromFavorites(widget.tvShow);
+                                },
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -106,21 +105,28 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                 ),
               ],
             ),
-            Container(
-              padding: EdgeInsets.all(AppSizes.defaultLargerPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8),
-                  Text(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 8),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.defaultMediumPadding,
+                  ),
+                  child: Text(
                     widget.tvShow.name,
                     style: TextStyle(
                       fontSize: AppSizes.defaultLargerFontSize,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: AppSizes.defaultLargerPadding),
-                  SingleChildScrollView(
+                ),
+                SizedBox(height: AppSizes.defaultLargerPadding),
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.defaultMediumPadding,
+                    ),
                     child: Row(
                       children: [
                         for (final genre in widget.tvShow.genres)
@@ -147,62 +153,62 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Summary',
-                    style: TextStyle(
-                      fontSize: AppSizes.defaultMediumFontSize,
-                      color: Colors.white,
-                    ),
+                ),
+                SizedBox(height: 8),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.defaultMediumPadding,
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    widget.tvShow.summary.removeHtmlTags(),
-                    style: TextStyle(
-                      fontSize: AppSizes.defaultSmallFontSize,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.defaultLargerPadding,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    tm.strings.tvShowDetailsDaysAndTime,
-                    style: TextStyle(
-                      fontSize: AppSizes.defaultFontSize,
-                      color: Colors.white,
-                    ),
-                  ),
-                  if (widget.tvShow.schedule != null) ...[
-                    SizedBox(height: 8),
-                    Text(
-                      '${widget.tvShow.schedule?.days.join(', ')}  ${tm.strings.at}  ${widget.tvShow.schedule?.time}',
-                      style: TextStyle(
-                        fontSize: AppSizes.defaultSmallFontSize,
-                        color: Colors.grey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tm.strings.summary,
+                        style: TextStyle(
+                          fontSize: AppSizes.defaultMediumFontSize,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                  ],
-                ],
-              ),
+                      SizedBox(height: AppSizes.defaultSmallPadding),
+                      Text(
+                        widget.tvShow.summary.removeHtmlTags(),
+                        style: TextStyle(
+                          fontSize: AppSizes.defaultSmallFontSize,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(height: AppSizes.defaultSmallPadding),
+                      Text(
+                        tm.strings.tvShowDetailsDaysAndTime,
+                        style: TextStyle(
+                          fontSize: AppSizes.defaultFontSize,
+                          color: Colors.white,
+                        ),
+                      ),
+                      if (widget.tvShow.schedule != null) ...[
+                        SizedBox(height: AppSizes.defaultSmallPadding),
+                        Text(
+                          '${widget.tvShow.schedule?.days.join(', ')}  ${tm.strings.at}  ${widget.tvShow.schedule?.time}',
+                          style: TextStyle(
+                            fontSize: AppSizes.defaultSmallFontSize,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: AppSizes.defaultLargerPadding),
+            SizedBox(height: AppSizes.defaultMediumPadding),
             CastSection(
-              cubit: cubit,
+              tvShowId: widget.tvShow.id,
             ),
+            SizedBox(height: AppSizes.defaultMediumPadding),
             SafeArea(
               top: false,
               child: EpisodesSection(
-                cubit: cubit,
+                tvShowId: widget.tvShow.id,
               ),
             ),
           ],

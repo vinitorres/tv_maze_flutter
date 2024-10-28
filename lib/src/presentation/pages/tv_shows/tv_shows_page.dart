@@ -5,10 +5,10 @@ import 'package:get_it/get_it.dart';
 import '../../i18n/i18n.dart';
 import '../../theme/app_sizes.dart';
 import '../../widgets/loading_with_text.dart';
-import '../../widgets/tv_shows_empty.dart';
-import '../../widgets/tv_shows_list.dart';
-import 'tv_shows_cubit.dart';
+import '../../widgets/tv_shows_list_widget/tv_shows_list.dart';
+import '../../widgets/tv_shows_list_widget/widgets/tv_shows_empty.dart';
 import 'tv_shows_state.dart';
+import 'tv_shows_view_model.dart';
 
 class TvShowsPage extends StatefulWidget {
   const TvShowsPage({super.key});
@@ -18,7 +18,7 @@ class TvShowsPage extends StatefulWidget {
 }
 
 class _TvShowsPageState extends State<TvShowsPage> {
-  final cubit = GetIt.instance.get<TvShowsCubit>();
+  final viewModel = GetIt.instance.get<TvShowsViewModel>();
 
   var currentPage = 0;
   var clearButtonVisibility = false;
@@ -27,13 +27,13 @@ class _TvShowsPageState extends State<TvShowsPage> {
 
   @override
   void initState() {
-    cubit.loadTvShows(currentPage);
+    viewModel.loadTvShows(currentPage);
     super.initState();
   }
 
   void loadMoreTvShows() {
     currentPage++;
-    cubit.loadTvShows(currentPage);
+    viewModel.loadTvShows(currentPage);
   }
 
   @override
@@ -64,9 +64,9 @@ class _TvShowsPageState extends State<TvShowsPage> {
               onSubmitted: (value) {
                 currentPage = 0;
                 if (value.isEmpty) {
-                  cubit.loadTvShows(currentPage);
+                  viewModel.loadTvShows(currentPage);
                 } else {
-                  cubit.searchTvShows(value, currentPage);
+                  viewModel.searchTvShows(value, currentPage);
                 }
               },
               style: TextStyle(color: Colors.white.withAlpha(200)),
@@ -88,7 +88,7 @@ class _TvShowsPageState extends State<TvShowsPage> {
                           onPressed: () {
                             _searchController.clear();
                             currentPage = 0;
-                            cubit.loadTvShows(currentPage);
+                            viewModel.loadTvShows(currentPage);
                           },
                         ),
                       )
@@ -106,8 +106,8 @@ class _TvShowsPageState extends State<TvShowsPage> {
           ),
         ),
       ),
-      body: BlocBuilder<TvShowsCubit, TvShowsState>(
-        bloc: cubit,
+      body: BlocBuilder<TvShowsViewModel, TvShowsState>(
+        bloc: viewModel,
         builder: ((context, state) {
           return switch (state) {
             TvShowsStateEmpty() => TvShowEmpty(tm.strings.tvShowsEmpty),

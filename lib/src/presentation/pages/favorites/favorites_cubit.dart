@@ -1,38 +1,34 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/entities/tv_show.dart';
-import '../../../domain/usecases/get_favorities_usecase.dart';
+import '../../../domain/domain.dart';
+import 'favorites_state.dart';
 
-part 'favorites_state.dart';
-
-class FavoritesCubit extends Cubit<FavoritesState> {
-  FavoritesCubit(this._getFavoritiesUsecase)
-      : super(FavoritesState(status: FavoritesStatus.initial));
+class FavoritesViewModel extends Cubit<FavoritesState> {
+  FavoritesViewModel(this._getFavoritiesUsecase)
+      : super(FavoritesStateLoading());
 
   final IGetFavoritiesUsecase _getFavoritiesUsecase;
 
   loadFavorites() async {
-    emit(state.copyWith(status: FavoritesStatus.loading));
-
-    state.favoritesList?.clear();
+    emit(FavoritesState.loading());
 
     final response = await _getFavoritiesUsecase();
 
     emit(
       response.fold(
         (l) {
-          return state.copyWith(status: FavoritesStatus.empty);
+          return FavoritesState.error(message: l.message);
         },
         (r) {
           if (r.isNotEmpty) {
-            return state.copyWith(status: FavoritesStatus.empty);
+            return FavoritesState.empty();
           }
 
           r.sort((a, b) => a.name.compareTo(b.name));
 
-          return state.copyWith(
-            status: FavoritesStatus.loaded,
+          return FavoritesState.loaded(
             favoritesList: r,
+            filtredList: [],
           );
         },
       ),
@@ -40,26 +36,22 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   }
 
   searchFavorites(String query) async {
-    state.filtredList?.clear();
-
-    state.filtredList?.addAll(
-      state.favoritesList!
-          .where(
-            (element) =>
-                element.name.toLowerCase().contains(query.toLowerCase()),
-          )
-          .toList(),
-    );
-
-    if (state.filtredList!.isEmpty) {
-      emit(state.copyWith(status: FavoritesStatus.empty));
-    } else {
-      emit(
-        state.copyWith(
-          status: FavoritesStatus.loaded,
-          filtredList: state.filtredList,
-        ),
-      );
+    if (query.isEmpty) {
+      return;
     }
+
+    final state = this.state as FavoritesStateLoaded;
+
+    final filtredList = state.favoritesList
+        .where(
+          (element) => element.name.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
+
+    emit(
+      state.copyWith(
+        filtredList: filtredList,
+      ),
+    );
   }
 }

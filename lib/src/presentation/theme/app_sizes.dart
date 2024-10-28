@@ -1,13 +1,13 @@
 /// Default values for size and padding
 class AppSizes {
   /// Default padding value for large padding
-  static const defaultLargerPadding = 16.0;
+  static const defaultLargerPadding = 24.0;
 
   /// Default padding value for medium padding
-  static const defaultMediumPadding = 8.0;
+  static const defaultMediumPadding = 16.0;
 
   /// Default padding value for small padding
-  static const defaultSmallPadding = 4.0;
+  static const defaultSmallPadding = 8.0;
 
   /// create const for font sizes
   static const defaultFontSize = 16.0;

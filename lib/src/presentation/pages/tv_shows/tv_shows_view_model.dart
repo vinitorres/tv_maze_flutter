@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/domain.dart';
 import 'tv_shows_state.dart';
 
-/// Cubit for TvShowsPage
-class TvShowsCubit extends Cubit<TvShowsState> {
-  /// Constructor [TvShowsCubit]
-  TvShowsCubit(
+/// ViewModel for TvShowsPage
+class TvShowsViewModel extends Cubit<TvShowsState> {
+  /// Constructor [TvShowsViewModel]
+  TvShowsViewModel(
     this._getTvShowsUsecase,
     this._searchTvShowUsecase,
   ) : super(TvShowsState.loading());
