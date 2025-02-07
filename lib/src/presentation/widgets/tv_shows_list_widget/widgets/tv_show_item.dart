@@ -55,7 +55,7 @@ class _TvShowItemState extends State<TvShowItem> {
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(8),
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withValues(alpha: 0.5),
                   child: Text(
                     widget.tvShow.name,
                     style: TextStyle(

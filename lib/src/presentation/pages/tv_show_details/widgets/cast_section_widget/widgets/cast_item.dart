@@ -23,7 +23,7 @@ class CastItem extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundColor: Colors.white.withOpacity(0.5),
+            backgroundColor: Colors.white.withValues(alpha: 0.5),
             backgroundImage: NetworkImage(person.imageSource?.original ?? ''),
           ),
           SizedBox(

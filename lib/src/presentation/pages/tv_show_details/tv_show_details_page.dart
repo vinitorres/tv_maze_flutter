@@ -59,7 +59,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                         ),
                         child: CircleAvatar(
                           radius: 24,
-                          backgroundColor: Colors.black.withOpacity(0.5),
+                          backgroundColor: Colors.black.withValues(alpha: 0.5),
                           child: IconButton(
                             icon: Icon(
                               Icons.arrow_back,
@@ -83,7 +83,7 @@ class _TvShowDetailsPageState extends State<TvShowDetailsPage> {
                           builder: (context, state) {
                             return CircleAvatar(
                               radius: 24,
-                              backgroundColor: Colors.black.withOpacity(0.5),
+                              backgroundColor: Colors.black.withAlpha(128),
                               child: IconButton(
                                 icon: Icon(
                                   Icons.star,
